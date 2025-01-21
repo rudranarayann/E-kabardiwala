@@ -1,0 +1,51 @@
+const express = require('express');
+const mongoose  = require('mongoose');
+const cors = require('cors');
+const cookieParser = require('cookie-parser');
+const authUser = require('../server/routers/user/user-router')
+const authVendor = require('../server/routers/vendor/vendor-router')
+
+
+//Connection for mongo ,id : suchitrakumar098@gmail.com
+try{
+    mongoose.connect('mongodb+srv://suchitrakumar098:Dalei123@e-kawadiwala.cqjs6.mongodb.net/').then(()=>
+    {
+        console.log("mongo connect successfully");
+    }).catch(()=>{
+        console.log("some error occured while connect to Mongo");
+    })
+}catch(e){
+    console.log(e)
+}
+
+
+// creation of server  with express
+const server = express();
+
+//require middleware 
+server.use(
+    cors({
+        origin : "http://localhost:5173",
+        methods : ['GET','POST','DELETE','PUT'],
+        allowedHeaders :[
+            'content-Type',
+            'Authorization',
+            'Cache-Control',
+            'Expires',
+            'Pragma'
+        ],
+        credentials : true,
+    })
+)
+server.use(cookieParser());
+server.use(express.json());
+
+
+server.use('/api/auth/user',authUser);
+server.use('/api/auth/vendor',authVendor);
+
+
+const PORT = 3500;
+server.listen(PORT,()=>{
+    console.log(`Server now running on Port ${PORT}`);
+})
