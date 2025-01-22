@@ -8,7 +8,7 @@ import { vendorRegistration } from "../../slice/vendor/vendor-auth-slice";
 export default function VendorRegistration(){
     const initialState = {
         username : '',
-        companyName: '',
+        companyname: '',
         email : '',
         password : '',
     }
@@ -20,8 +20,10 @@ export default function VendorRegistration(){
         event.preventDefault();
         dispatch(vendorRegistration(formData)).then((data)=>{
             // console.log(data.payload);
-            if(data?.payload?.success)
+            if(data?.payload?.success){
+                alert('Vendor Registration successfull.');
                 setFormData(initialState);
+            }
         })
     }
     return (

@@ -15,8 +15,10 @@ export default function VendorLogin(){
     function handleVendorLogin(event){
         event.preventDefault();
         dispatch(vendorLogin(formData)).then((data)=>{
-            if(data?.payload?.success)
+            if(data?.payload?.success){
+                alert('successfully vendor logged in');
                 setFormData(initialState);
+            }
         })
     }
 

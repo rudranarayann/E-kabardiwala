@@ -19,8 +19,10 @@ export default function UserRegistration(){
     function handlUserRegistration(event){
         event.preventDefault();
         dispatch(userRegistration(formData)).then((data)=>{
-            if(data?.payload?.success)
+            if(data?.payload?.success){
+                alert('User Registration successfull.');
                 setFormData(intitialState);
+            }
         });
     }
 

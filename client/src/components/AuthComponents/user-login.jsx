@@ -18,6 +18,7 @@ export default function UserLogin(){
         event.preventDefault();
         dispatch(userLogin(formData)).then((data)=>{
             if(data?.payload?.success){
+                alert('successfully user logged in');
                 setFormData(intitialState);
             };
         });
