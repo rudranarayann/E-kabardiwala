@@ -6,11 +6,13 @@ import UserRegistration from "./components/AuthComponents/user_redg";
 import UserLogin from "./components/AuthComponents/user-login";
 import VendorLogin from "./components/AuthComponents/vendor-login";
 import VendorRegistration from "./components/AuthComponents/vendor_redg";
+import HeroLayout from "./pages/HeroPage/heroLayout";
 
 function App() {
   return (
     <Fragment>
       <Routes>
+        <Route path="/" element={<HeroLayout/>}/>
         <Route path="/auth" element={<AuthLayoutMain/>}>
           <Route path="signin-user" element={<UserLogin/>}/>
           <Route path="signin-vendor" element={<VendorLogin/>}/>

@@ -3,7 +3,8 @@ import CommonForm from "../../common/commonform";
 import {vendorLoginForm} from '../../config/config'
 import { Link } from "react-router-dom";
 import { useDispatch } from "react-redux";
-import { vendorLogin } from "../../slice/vendor/vendor-auth-slice";
+import { vendorLogin } from "../../slice/user/user-auth-slice";
+
 export default function VendorLogin(){
     const initialState = {
         email : '',

@@ -3,7 +3,7 @@ import CommonForm from "../../common/commonform";
 import {vendorRegistrationForm} from '../../config/config'
 import { useState } from "react";
 import { useDispatch } from "react-redux";
-import { vendorRegistration } from "../../slice/vendor/vendor-auth-slice";
+import { vendorRegistration } from "../../slice/user/user-auth-slice";
 
 export default function VendorRegistration(){
     const initialState = {
