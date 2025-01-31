@@ -1,7 +1,17 @@
 import Header from "../../components/header";
 import BGVideo from "../../assets/hero_page_video.mp4"
+import { useDispatch, useSelector } from 'react-redux'
+import { useEffect } from "react";
+import { checkAuth } from "../../slice/user/user-auth-slice";
 
 export default function HeroLayout() {
+  
+  const {user} = useSelector(state=>state.auth)
+  const dispatch = useDispatch();
+  useEffect(()=>{
+    dispatch(checkAuth());
+  },[dispatch])
+
     function HeroContent() {
       return (
         <div className="relative text-white flex justify-center flex-col items-center text-center px-4 mt-[50%] md:mt-[20%] ">
@@ -17,7 +27,7 @@ export default function HeroLayout() {
         </div>
       );
     }
-  
+    // console.log("Suchitra",user);
     return (
       <div>
         <Header />

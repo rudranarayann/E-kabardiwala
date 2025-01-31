@@ -72,7 +72,7 @@ const loginUser = async(req,res)=>{
             id : checkUser._id,
             email : checkUser.email,
             role : checkUser.role,
-            userName : checkUser.username,
+            username : checkUser.username,
         },'CLIENT_SERVER_KEY' , {expiresIn : '60m'});
 
         res.cookie('token',token,{httponly : true, secure : false, SameSite : 'none'}).json({
@@ -104,7 +104,7 @@ const logoutUser = async(req,res)=>{
 }
 
 const authMiddleWare = async(req,res,next)=>{
-    const token = req.cookie.token;
+    const token = req.cookies.token;
     if(!token){
         return res.status(401).json({
             success : false,
