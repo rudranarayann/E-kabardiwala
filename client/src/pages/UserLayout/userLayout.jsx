@@ -2,8 +2,8 @@ import Header from "../../components/header";
 
 export default function UserLayout(){
     return (
-        <div>
-            <Header/>
+        <div className="min-h-screen">
+            
         </div>
     )
 }

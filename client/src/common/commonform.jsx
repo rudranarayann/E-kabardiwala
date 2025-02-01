@@ -7,7 +7,7 @@ export default function CommonForm({ formControls, formData, setFormData, onSubm
         switch (getControlItem.componentType) {
             case 'input':
                 element = (
-                    <input className="rounded-lg py-4 px-10 w-[300px] " type={getControlItem.type}
+                    <input className="rounded-lg py-4 px-10 md:w-[300px] border-2 w-full " type={getControlItem.type}
                     name={getControlItem.name}
                     placeholder={getControlItem.placeholder}
                     id={getControlItem.name}
@@ -20,7 +20,7 @@ export default function CommonForm({ formControls, formData, setFormData, onSubm
                 break;
             
             case 'textarea':
-                element=(<textarea
+                element=(<textarea className="border-2 p-2 rounded-lg"
                     name={getControlItem.name}
                     placeholder={getControlItem.placeholder}
                     value={value}
@@ -32,7 +32,7 @@ export default function CommonForm({ formControls, formData, setFormData, onSubm
                 />)
                 break;
             default:
-               element = ( <input type={getControlItem.type}
+               element = ( <input className="border-2" type={getControlItem.type}
                     name={getControlItem.name}
                     placeholder={getControlItem.placeholder}
                     id={getControlItem.name}
@@ -61,7 +61,7 @@ export default function CommonForm({ formControls, formData, setFormData, onSubm
                         </div>
                     )
                 }
-                <button className="bg-black text-white rounded-lg py-2" disabled={isBtnDisabled} >{buttonText ||'Submit'}</button>
+                <button className="bg-black text-white rounded-lg py-2 hover:bg-gray-800 " disabled={isBtnDisabled} >{buttonText ||'Submit'}</button>
             </div>
             
         </form>

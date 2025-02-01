@@ -1,8 +1,9 @@
-import Header from "../../components/header";
+
 import BGVideo from "../../assets/hero_page_video.mp4"
 import { useDispatch, useSelector } from 'react-redux'
 import { useEffect } from "react";
 import { checkAuth } from "../../slice/user/user-auth-slice";
+import ContactComponent from "../../components/contactComponent";
 
 export default function HeroLayout() {
   
@@ -14,7 +15,7 @@ export default function HeroLayout() {
 
     function HeroContent() {
       return (
-        <div className="relative text-white flex justify-center flex-col items-center text-center px-4 mt-[50%] md:mt-[20%] ">
+        <div className="relative text-white flex justify-center flex-col items-center text-center px-4 mt-[50%] md:mt-[15%] ">
           <h1 className="text-3xl md:text-5xl font-bold">
             Got Scrap? Don't know what to do?
           </h1>
@@ -27,11 +28,11 @@ export default function HeroLayout() {
         </div>
       );
     }
-    // console.log("Suchitra",user);
+  
     return (
       <div>
-        <Header />
-        <div className="min-h-screen w-full overflow-hidden relative">
+      
+        <div className="min-h-screen w-full overflow-hidden relative mb-20">
           <video
             src={BGVideo}
             autoPlay
@@ -42,6 +43,8 @@ export default function HeroLayout() {
           <div className="absolute inset-0 bg-black bg-opacity-50"></div>
           <HeroContent />
         </div>
+        <ContactComponent/>
+      
       </div>
     );
   }

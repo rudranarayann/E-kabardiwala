@@ -13,6 +13,10 @@ import { checkAuth } from "./slice/user/user-auth-slice";
 import CheckAuth from "./components/AuthComponents/checkauth";
 import UserLayout from "./pages/UserLayout/userLayout";
 import PageNotFound from "./components/PageNotFound/page-not-found";
+import Footer from "./components/Footer/footer";
+import Header from "./components/header";
+import ContactLayout from "./components/contactComponent";
+import AboutLayout from "./pages/About/aboutLayout";
 
 function App() {
   const dispatch = useDispatch();
@@ -26,6 +30,7 @@ function App() {
 
   return (
     <Fragment>
+      <Header/>
       <Routes>
         <Route path="/" element={
           <CheckAuth isAuthenticate={isAuthenticate} user={user} >
@@ -57,8 +62,23 @@ function App() {
           </CheckAuth>
         }>
         </Route>
+
+        <Route path="/contact" element={
+          <CheckAuth isAuthenticate={isAuthenticate} user={user}>
+            <ContactLayout/>
+          </CheckAuth>
+        }>
+        </Route>
+
+        <Route path="/about" element={
+          <CheckAuth isAuthenticate={isAuthenticate} user={user}>
+            <AboutLayout/>
+          </CheckAuth>
+        }>
+        </Route>
         <Route path="*" element={<PageNotFound/>}/>
       </Routes>
+      <Footer/>
     </Fragment>
   )
 }

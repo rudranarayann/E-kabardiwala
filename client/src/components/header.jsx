@@ -1,6 +1,6 @@
 
 import { useState } from "react";
-import Logo from "../assets/online-kawadiwala_logo.png";
+import Logo from "../assets/logoNew.jpg";
 import { Link, useNavigate } from "react-router-dom";
 import { ChevronDown, ChevronUp, UserRoundPen, X, AlignJustifyIcon, LogOut } from "lucide-react";
 import { useDispatch, useSelector } from "react-redux";
@@ -16,25 +16,25 @@ export default function Header() {
     const toggle = () => {
         setIsOpen(!isOpen);
     };
-    
+
     const toggleDropDown = () => {
         setDropDownOpen(!isDropDownOpen);
     };
 
-    function handleOnclicLogout(){
-        if(user?.role === 'vendor'){
-            dispatch(vendorLogout()).then(()=>{
+    function handleOnclicLogout() {
+        if (user?.role === 'vendor') {
+            dispatch(vendorLogout()).then(() => {
                 alert('logged out successfully');
             })
-        }else{
-            dispatch(userLogout()).then(()=>{
+        } else {
+            dispatch(userLogout()).then(() => {
                 alert('logged out successfully');
             })
         }
     }
 
-    function handleOnClickLogo(){
-        user?.role === 'vendor' ? navigate('/admin'):navigate('/user');
+    function handleOnClickLogo() {
+        user?.role === 'vendor' ? navigate('/admin') : navigate('/user');
     }
 
     function HeaderLinks() {
@@ -45,25 +45,36 @@ export default function Header() {
                         Service {isDropDownOpen ? <ChevronUp /> : <ChevronDown />}
                     </p>
 
-                   
+
                     {isDropDownOpen && (
                         <ul className="absolute left-0 mt-2 w-48 bg-white text-black shadow-lg rounded-lg z-50 overflow-hidden ">
                             <li className="px-4 py-2 hover:bg-gray-200">
                                 <Link to="/sell-scrap">Sell Scrap</Link>
                             </li>
-                            <li className="px-4 py-2 hover:bg-gray-200">
+                            {user?.role === 'vendor' ? <li className="px-4 py-2 hover:bg-gray-200">
                                 <Link to="/add-vendor-address">Add Vendor Address</Link>
-                            </li>
-                            <li className="px-4 py-2 hover:bg-gray-200">
+                            </li> : <li className="px-4 py-2 hover:bg-gray-200">
+                                <Link to="/add-vendor-address">Vehicle Scraping</Link>
+                            </li>}
+                            {user?.role === 'vendor' ? <li className="px-4 py-2 hover:bg-gray-200">
                                 <Link to="/pick-up">Pick Up</Link>
-                            </li>
+                            </li> : <li className="px-4 py-2 hover:bg-gray-200">
+                                <Link to="/pick-up">Zero Waste Society</Link>
+                            </li>}
+                            {
+                                user?.role === 'vendor' ? <li className="px-4 py-2 hover:bg-gray-200">
+                                    <Link to="/pick-up">Payments</Link>
+                                </li> : <li className="px-4 py-2 hover:bg-gray-200">
+                                    <Link to="/pick-up">Sell E-waste</Link>
+                                </li>
+                            }
                         </ul>
                     )}
                 </div>
 
                 <Link className="hover:cursor-pointer hover:text-gray-300">Company</Link>
                 <p>
-                    <Link className="hover:cursor-pointer hover:text-gray-300">About</Link>
+                    <Link to={'/about'} className="hover:cursor-pointer hover:text-gray-300">About</Link>
                 </p>
             </>
         );
@@ -72,10 +83,14 @@ export default function Header() {
     function HeaderRight() {
         return (
             <div className="hidden md:flex items-center gap-[30px] text-white">
-                {user?.role !== 'vendor'?<Link className="border-2 rounded-full px-4 py-3 hover:cursor-pointer hover:bg-green-600">
-                    Sell Scrap
-                </Link>:<h1 className="font-bold text-xl border p-2 rounded-md">Admin Panel</h1>}
-                {user !== null ? <button className="hover:text-gray-300" onClick={handleOnclicLogout}><LogOut/></button>:null}
+                {
+                    user?.role !== 'vendor' ? <Link className="border-2 rounded-full px-4 py-3 hover:cursor-pointer hover:bg-green-600">
+                        Sell Scrap
+                    </Link> : <h1 className="font-bold text-xl border p-2 rounded-md">Admin Panel</h1>
+                }
+                {
+                    user !== null ? <button className="hover:text-gray-300" onClick={handleOnclicLogout}><LogOut /></button> : null
+                }
                 {isAuthenticate ? (
                     <div className="flex justify-center items-center flex-col mr-4">
                         <p>
@@ -88,7 +103,7 @@ export default function Header() {
                         LogIn/SignUp
                     </Link>
                 )}
-                
+
             </div>
         );
     }
@@ -97,15 +112,17 @@ export default function Header() {
     return (
         <header className="bg-green-700 px-2 py-5 flex w-full justify-between flex-wrap items-center shadow-2xl">
             <div className="flex gap-2 items-center hover:cursor-pointer">
-                <img className="h-16 w-16 rounded-full" src={Logo} alt="logo" />
+                <img className="h-15 w-20 rounded-md" src={Logo} alt="logo" />
                 <h1 onClick={handleOnClickLogo} className="text-white text-[15px] md:text-[25px] font-semibold hover:text-gray-300">SCRAP COLLECTOR</h1>
             </div>
 
-            {!isAuthenticate ? (
-                <Link className="md:hidden border-2 border-white rounded-full px-4 py-2 hover:cursor-pointer hover:bg-green-600 text-white flex justify-center items-center" to="/auth">
-                    LogIn/SignUp
-                </Link>
-            ) : null}
+            {
+                !isAuthenticate ? (
+                    <Link className="md:hidden border-2 border-white rounded-full px-4 py-2 hover:cursor-pointer hover:bg-green-600 text-white flex justify-center items-center" to="/auth">
+                        LogIn/SignUp
+                    </Link>
+                ) : null
+            }
 
             <div className="hidden md:flex items-center gap-[50px] text-white">
                 <HeaderLinks />

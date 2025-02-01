@@ -86,3 +86,41 @@ export const vendorLoginForm = [
         type: 'password',
     },
 ]
+
+export const contactForm = [
+    {
+        name :'name',
+        label:'Name',
+        placeholder : 'Enter your name',
+        componentType : 'input',
+        type : 'text'
+    },
+    {
+        name :'email',
+        label:'Email',
+        placeholder : 'Enter your email',
+        componentType : 'input',
+        type : 'email'
+    },
+    {
+        name :'mobileno',
+        label:'Mobile Number',
+        placeholder : 'Enter your number',
+        componentType : 'input',
+        type : 'text'
+    },
+    {
+        name :'subject',
+        label:'Subject',
+        placeholder : 'Subject',
+        componentType : 'input',
+        type : 'text'
+    },
+    {
+        name :'message',
+        label:'Message',
+        placeholder : 'Message',
+        componentType : 'textarea',
+    },
+    
+]
