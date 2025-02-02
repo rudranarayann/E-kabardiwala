@@ -29,19 +29,19 @@ export default function Footer() {
 
     const socilaLinks = [
         {
-            icon: "fab fa-facebook-f",
+            icon: "fab fa-facebook-f fa-xl",
             href: 'https://www.facebook.com/profile.php?id=61572452982528'
         },
         {
-            icon: "fab fa-linkedin",
+            icon: "fab fa-linkedin fa-xl",
             href: 'https://www.linkedin.com/in/scrap-collector-10050634a/'
         },
         {
-            icon: "fab fa-whatsapp",
+            icon: "fab fa-whatsapp fa-xl",
             href: ''
         },
         {
-            icon: "fab fa-instagram",
+            icon: "fab fa-instagram fa-xl",
             href: 'https://www.instagram.com/scrap_collector_environx/'
         },
     ]
@@ -52,7 +52,8 @@ export default function Footer() {
 
                 <div className="flex flex-col">
                     <div className="flex justify-start items-center gap-2 ">
-                        <img className="h-10 w-15" src={Logo} alt='Logo' />
+                        <i className="fa-solid fa-recycle fa-2xl "></i>
+                        {/* <img className="h-10 w-15" src={Logo} alt='Logo' /> */}
                         <h1 className="font-semibold text-xl">Scrap Collector</h1>
                     </div>
                     <div className="w-[80px] border border-red-300 mt-2"></div>
@@ -80,15 +81,15 @@ export default function Footer() {
                     <div className="w-[60px] border border-red-300 mt-2"></div>
                     <div className="flex flex-col">
                         {
-                            quickLinks.map((item) => (
-                                <Link to={item.path} className="font-semibold text-gray-600 hover:text-gray-800">{item.label}</Link>
+                            quickLinks.map((item,index) => (
+                                <Link key={index} to={item.path} className="font-semibold text-gray-600 hover:text-gray-800">{item.label}</Link>
                             ))
                         }
                     </div>
                     <div className="flex gap-2">
                         {
-                            socilaLinks.map((item) => (
-                                <a className="bg-green-300 py-3 px-4 rounded-full hover:translate-y-1" href={item.href} target="_blank"><i className={`${item.icon}`}></i></a>
+                            socilaLinks.map((item,index) => (
+                                <a key={index} className="bg-green-300 py-3 px-4 rounded-full hover:translate-y-1" href={item.href} target="_blank"><i className={`${item.icon}`}></i></a>
                             ))
                         }
                     </div>
