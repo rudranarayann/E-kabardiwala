@@ -36,7 +36,7 @@ export default function ContactComponent() {
                     </div>
                     <div className="flex justify-center items-center gap-3 text-xl">
                         <Mail />
-                        <p className="font-semibold">contact@scrapcollector.com</p>
+                        <p className="font-semibold">contact.scrapcollector@gmail.com</p>
                     </div>
                     <div className="flex justify-center items-center gap-3 text-xl">
                         <MapPin />

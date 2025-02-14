@@ -124,3 +124,130 @@ export const contactForm = [
     },
     
 ]
+
+
+
+export const odishaCities = [
+    "Bhubaneswar", "Cuttack", "Rourkela", "Berhampur", "Sambalpur", "Puri", "Balasore", "Baripada", "Jharsuguda", "Jeypore", "Koraput", "Bargarh", "Angul", "Dhenkanal", "Paradip"
+];
+
+export const vendorRegistrationConfig = [
+    {
+        name :'vendorname',
+        label:'Vendor Name',
+        placeholder : 'Enter name',
+        componentType : 'input',
+        type : 'text'
+    },
+    {
+        name :'location',
+        label:'Location',
+        placeholder : 'Enter Location',
+        componentType : 'input',
+        type : 'text'
+    },
+    {
+        name :'city',
+        label:'City',
+        placeholder : 'Enter City',
+        componentType : 'select',
+        type : 'text'
+    },
+    {
+        name :'plastic',
+        label:'Plastic Price',
+        placeholder : 'Enter Plastic Price',
+        componentType : 'input',
+        type : 'text'
+    },
+    {
+        name :'metal',
+        label:'Metal Price',
+        placeholder : 'Enter Metal Price',
+        componentType : 'input',
+        type : 'text'
+    },
+    {
+        name :'glass',
+        label:'Glass Price',
+        placeholder : 'Enter Glass Price',
+        componentType : 'input',
+        type : 'text'
+    },
+    {
+        name :'paper',
+        label:'Paper Price',
+        placeholder : 'Enter Paper Price',
+        componentType : 'input',
+        type : 'text'
+    },
+]
+
+export const addcity = [
+    {
+        name :'city',
+        label:'City',
+        placeholder : 'Enter City',
+        componentType : 'select',
+        type : 'text'
+    },
+    {
+        name :'plastic',
+        label:'Plastic Price',
+        placeholder : 'Enter Paper Price',
+        componentType : 'input',
+        type : 'text'
+    },
+    {
+        name :'metal',
+        label:'Metal Price',
+        placeholder : 'Enter Metal Price',
+        componentType : 'input',
+        type : 'text'
+    },
+    {
+        name :'glass',
+        label:'Glass Price',
+        placeholder : 'Enter Glass Price',
+        componentType : 'input',
+        type : 'text'
+    },
+    {
+        name :'paper',
+        label:'Paper Price',
+        placeholder : 'Enter Paper Price',
+        componentType : 'input',
+        type : 'text'
+    }
+]
+
+export const updatePriceControl = [
+    {
+        name :'plastic',
+        label:'Plastic Price',
+        placeholder : 'Enter Paper Price',
+        componentType : 'input',
+        type : 'text'
+    },
+    {
+        name :'metal',
+        label:'Metal Price',
+        placeholder : 'Enter Metal Price',
+        componentType : 'input',
+        type : 'text'
+    },
+    {
+        name :'glass',
+        label:'Glass Price',
+        placeholder : 'Enter Glass Price',
+        componentType : 'input',
+        type : 'text'
+    },
+    {
+        name :'paper',
+        label:'Paper Price',
+        placeholder : 'Enter Paper Price',
+        componentType : 'input',
+        type : 'text'
+    }
+]

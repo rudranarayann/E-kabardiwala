@@ -17,6 +17,14 @@ import Footer from "./components/Footer/footer";
 import Header from "./components/header";
 import ContactLayout from "./components/contactComponent";
 import AboutLayout from "./pages/About/aboutLayout";
+// import ScrapRequest from "./components/user/scrap-request";
+import UserHome from "./components/user/Userhome";
+import ScrapRequest from "./components/user/scrap-request";
+import VendorCompanyRegistration from "./components/admin/company-register";
+import AdminHeroPage from "./components/admin/admin-hero";
+import AddCity from "./components/admin/add-city";
+import UpdatePrice from "./components/admin/update-price";
+import AllCity from "./components/admin/all-city";
 
 function App() {
   const dispatch = useDispatch();
@@ -54,13 +62,19 @@ function App() {
             <AdminLayout/>
           </CheckAuth>
         }>
+          <Route path="home" element={<AdminHeroPage/>}/>
+          <Route path="company-registration" element={<VendorCompanyRegistration/>}/>
+          <Route path="add-city" element={<AddCity/>}/>
+          <Route path="update-price/:city" element={<UpdatePrice/>}/>
+          <Route path="all-city" element={<AllCity/>}/>
         </Route>
-
         <Route path="/user" element={
           <CheckAuth isAuthenticate={isAuthenticate} user={user}>
             <UserLayout/>
           </CheckAuth>
         }>
+          <Route path="home" element={<UserHome/>}/>
+          <Route path="scrap" element={<ScrapRequest/>}/>
         </Route>
 
         <Route path="/contact" element={

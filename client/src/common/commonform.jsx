@@ -1,5 +1,6 @@
 
-export default function CommonForm({ formControls, formData, setFormData, onSubmit, buttonText ,isBtnDisabled }) {
+export default function CommonForm({ formControls, formData, setFormData, onSubmit, buttonText ,isBtnDisabled,selectItem }) {
+
     function renderFormElementByType(getControlItem) {
         let element = null;
         const value = formData[getControlItem.name] || '';
@@ -31,6 +32,25 @@ export default function CommonForm({ formControls, formData, setFormData, onSubm
                     })}
                 />)
                 break;
+            
+                case 'select':
+                    element = (
+                        <select className="border-2 p-2 rounded-lg" 
+                            name={getControlItem.name} 
+                            value={value} 
+                            onChange={(event) => setFormData({
+                                ...formData,
+                                [getControlItem.name]: event.target.value,
+                            })}
+                        >
+                            <option value="" disabled>Select City</option>
+                            {selectItem?.map((city, index) => (
+                                <option key={index} value={city}>{city}</option>
+                            ))}
+                        </select>
+                    );
+                    break;
+    
             default:
                element = ( <input className="border-2" type={getControlItem.type}
                     name={getControlItem.name}
@@ -49,8 +69,8 @@ export default function CommonForm({ formControls, formData, setFormData, onSubm
 
     return (
 
-        <form onSubmit={onSubmit}>
-            <div className="flex flex-col gap-3">
+        <form onSubmit={onSubmit} className="flex flex-col gap-5">
+            <div className={`flex flex-col gap-3 ${formControls?.length > 4 ?'md:grid grid-cols-2': ''}`}>
                 {
                     formControls.map(controlItem =>
                         <div className="grid w-full gap-1.5" key={controlItem.name}>
@@ -61,8 +81,9 @@ export default function CommonForm({ formControls, formData, setFormData, onSubm
                         </div>
                     )
                 }
-                <button className="bg-black text-white rounded-lg py-2 hover:bg-gray-800 " disabled={isBtnDisabled} >{buttonText ||'Submit'}</button>
+                
             </div>
+            <button className="bg-black text-white rounded-lg py-2 hover:bg-gray-800 " disabled={isBtnDisabled} >{buttonText ||'Submit'}</button>
             
         </form>
     )

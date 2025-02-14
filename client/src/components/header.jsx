@@ -2,7 +2,7 @@
 import { useState } from "react";
 import Logo from "../assets/logoNew.jpg";
 import { Link, useNavigate } from "react-router-dom";
-import { ChevronDown, ChevronUp, UserRoundPen, X, AlignJustifyIcon, LogOut, Settings } from "lucide-react";
+import { ChevronDown, ChevronUp, UserRoundPen, X, AlignJustifyIcon, LogOut, Settings, Truck, ChartNoAxesCombined, RefreshCcw, ClipboardList, Sprout, PackageCheck, IndianRupee, CircuitBoard, Building2, CalendarArrowUp, GalleryHorizontalEnd } from "lucide-react";
 import { useDispatch, useSelector } from "react-redux";
 import { userLogout, vendorLogout } from "../slice/user/user-auth-slice";
 import '@fortawesome/fontawesome-free/css/all.min.css';
@@ -12,13 +12,15 @@ export default function Header() {
     const [isOpen, setIsOpen] = useState(false);
     const [isDropDownOpen, setDropDownOpen] = useState(false);
     const [isProfileOption, setIsProfileOption] = useState(false);
+    const [dropDownForCompany, setDropDownForCompany] = useState(false);
     const { isAuthenticate, user } = useSelector((state) => state.auth);
     const dispatch = useDispatch();
     const navigate = useNavigate();
 
     // below function is defined toggle to open Option 
-    const toggle = (getPerticularButton,setPerticularButton) => {
+    const toggle = (getPerticularButton, setPerticularButton) => {
         setPerticularButton(!getPerticularButton);
+        
     };
 
     //handel logout 
@@ -36,7 +38,7 @@ export default function Header() {
 
     //When click to logo it redirect to Home page of admin and user respective login type.
     function handleOnClickLogo() {
-        user?.role === 'vendor' ? navigate('/admin') : navigate('/user');
+        user?.role === 'vendor' ? navigate('/admin/home') : navigate('/user/home');
     }
 
     //Specific header links for functionality
@@ -44,7 +46,9 @@ export default function Header() {
         return (
             <>
                 <div className="relative">
-                    <p onClick={()=>toggle(isDropDownOpen, setDropDownOpen)} className="hover:cursor-pointer flex items-center gap-2 hover:text-gray-300">
+                    <p onClick={() => {toggle(isDropDownOpen, setDropDownOpen)
+                        if(dropDownForCompany || isProfileOption) { setIsProfileOption(false); setDropDownForCompany(false)} 
+                    }} className="hover:cursor-pointer flex items-center gap-2 hover:text-gray-300">
                         Service {isDropDownOpen ? <ChevronUp /> : <ChevronDown />}
                     </p>
 
@@ -52,35 +56,49 @@ export default function Header() {
                     {isDropDownOpen && (
                         <ul className="absolute left-0 mt-2 w-48 top-[85px] md:top-[66px] bg-white text-black shadow-lg rounded-lg z-50 overflow-hidden  ">
                             <li className="px-4 py-2 hover:bg-gray-200">
-                                <Link to="/sell-scrap">Sell Scrap</Link>
+                                <Link className="flex gap-3" to="/user/scrap"><Truck /> Sell Scrap</Link>
                             </li>
-                            {user?.role === 'vendor' ? <li className="px-4 py-2 hover:bg-gray-200">
-                                <Link to="/add-vendor-address">Add Vendor Address</Link>
-                            </li> : <li className="px-4 py-2 hover:bg-gray-200">
-                                <Link to="/add-vendor-address">Vehicle Scraping</Link>
-                            </li>}
-                            {user?.role === 'vendor' ? <li className="px-4 py-2 hover:bg-gray-200">
-                                <Link to="/pick-up">Pick Up</Link>
-                            </li> : <li className="px-4 py-2 hover:bg-gray-200">
-                                <Link to="/pick-up">Zero Waste Society</Link>
-                            </li>}
-                            {
-                                user?.role === 'vendor' ? <li className="px-4 py-2 hover:bg-gray-200">
-                                    <Link to="/pick-up">Payments</Link>
-                                </li> : <li className="px-4 py-2 hover:bg-gray-200">
-                                    <Link to="/pick-up">Sell E-waste</Link>
-                                </li>
-                            }
+                            <li className="px-4 py-2 hover:bg-gray-200">
+                                <Link className="flex gap-3" to="/vehicle-scrap"><RefreshCcw />Vehicle Scraping</Link>
+                            </li>
+                            <li className="px-4 py-2 hover:bg-gray-200">
+                                <Link className="flex gap-3" to={'/zero-waste'}><Sprout />Zero Waste Society</Link>
+                            </li>
+                            <li className="px-4 py-2 hover:bg-gray-200">
+                                    <Link className="flex gap-3" to="/e-waste"><CircuitBoard />Sell E-waste</Link>
+                            </li>
+                            
                         </ul>
                     )}
                 </div>
-                
+
                 {/* It redirected to company page */}
-                <Link className="hover:cursor-pointer hover:text-gray-300">Company</Link>
+                <div className="relative">
+                    <p onClick={() => {toggle(dropDownForCompany, setDropDownForCompany)
+                        if(isDropDownOpen || isProfileOption) { setIsProfileOption(false); setDropDownOpen(false)} 
+                    }} className="hover:cursor-pointer flex items-center gap-2 hover:text-gray-300">
+                        Company {dropDownForCompany ? <ChevronUp /> : <ChevronDown />}
+                    </p>
+
+                    {/* when clicked in service dropdown button then it shows respective options wheather login person is a vendor or User */}
+                    {dropDownForCompany && (
+                        <ul className="absolute left-0 mt-2 w-48 top-[60px] md:top-[66px] bg-white text-black shadow-lg rounded-lg z-50 overflow-hidden  ">
+                            <li className="px-4 py-2 hover:bg-gray-200">
+                                <Link className="flex gap-3" to="/contact"> Contact</Link>
+                            </li>
+                            <li className="px-4 py-2 hover:bg-gray-200">
+                                <Link className="flex gap-3" to="/about">About</Link>
+                            </li>
+
+                        </ul>
+                    )}
+                </div>
+
+                {/* <Link className="hover:cursor-pointer hover:text-gray-300">Company</Link> */}
 
                 {/* it redirected to About section  */}
                 <p>
-                    <Link to={'/about'} className="hover:cursor-pointer hover:text-gray-300">About</Link>
+                    <Link to={'/career'} className="hover:cursor-pointer hover:text-gray-300">Careers</Link>
                 </p>
             </>
         );
@@ -93,19 +111,25 @@ export default function Header() {
 
                 {/* If someone has already logged in , it shows a Admin header for admin and user header for user . And also have logout functionality*/}
                 <div className="hidden md:flex items-center gap-[30px] text-white">
-                {
-                    user?.role !== 'vendor' ? <Link className="border-2 rounded-full px-4 py-3 hover:cursor-pointer hover:bg-green-600">
-                        Sell Scrap
-                    </Link> : <h1 className="font-bold text-xl border p-2 rounded-md">Admin Panel</h1>
-                }
-                {
-                    user !== null ? <button className="hover:text-gray-300" onClick={handleOnclickLogout}><LogOut /></button> : null
-                }
+                    {
+                        !isAuthenticate ?
+                        <Link to={'/auth/signin-user'} className="border-2 rounded-full px-4 py-3 hover:cursor-pointer hover:bg-green-600">
+                            Sell Scrap
+                        </Link>
+                        :user?.role !== 'vendor' ? <Link to={'/user/scrap'} className="border-2 rounded-full px-4 py-3 hover:cursor-pointer hover:bg-green-600">
+                            Sell Scrap
+                        </Link> : <h1 className="flex gap-3 font-bold text-xl border p-2 rounded-md"> <ChartNoAxesCombined />Admin Panel</h1>
+                    }
+                    {
+                        user !== null ? <button className="hover:text-gray-300" onClick={handleOnclickLogout}><LogOut /></button> : null
+                    }
                 </div>
 
                 {/* for valid user it shows a profile section , if not then shows for login/signup */}
                 {isAuthenticate ? (
-                    <div onClick={()=>toggle(isProfileOption,setIsProfileOption)} className="flex justify-center items-center flex-col mr-4 hover:cursor-pointer">
+                    <div onClick={() => {toggle(isProfileOption, setIsProfileOption)
+                        if(dropDownForCompany || isDropDownOpen || isOpen) { setDropDownForCompany(false); setDropDownOpen(false);setIsOpen(false)} 
+                    }} className="flex justify-center items-center flex-col mr-4 hover:cursor-pointer">
                         <p className="rounded-full border-2 border-white p-4" >
                             <UserRoundPen />
                         </p>
@@ -117,7 +141,7 @@ export default function Header() {
                     </Link>
                 )}
             </div>
-            
+
         );
     }
 
@@ -134,7 +158,9 @@ export default function Header() {
             <div className="hidden md:flex items-center gap-[50px] text-white">
                 <HeaderLinks />
             </div>
-            <button onClick={()=>toggle(isOpen,setIsOpen)} className="text-white md:hidden">
+            <button onClick={() => {toggle(isOpen, setIsOpen)
+                isProfileOption ? setIsProfileOption(false) : null
+            }} className="text-white md:hidden">
                 {isOpen ? <X /> : <AlignJustifyIcon />}
             </button>
 
@@ -150,23 +176,69 @@ export default function Header() {
 
             {/* it shows the option when you clicked on Profile symbol*/}
             {isProfileOption && (
-              <div className="absolute top-[124px] right-0 overflow-hidden bg-white text-black shadow-lg rounded-lg z-50">
-              <ul>
-                <li className="px-4 py-2 hover:bg-gray-200 cursor-pointer">
-                  <Link to="/profile-settings" className="flex items-center gap-2">
-                    <Settings className="w-5 h-5" /> Profile Settings
-                  </Link>
-                </li>
-                <li
-                  onClick={handleOnclickLogout}
-                  className="px-4 py-2 hover:bg-gray-200 cursor-pointer"
-                >
-                  <div className="flex items-center gap-2">
-                    <LogOut className="w-5 h-5" /> Logout
-                  </div>
-                </li>
-              </ul>
-            </div>
+                <div className="absolute top-[124px] right-0 overflow-hidden bg-white text-black shadow-lg rounded-lg z-50">
+                    <ul>
+                        <li className="px-4 py-2 hover:bg-gray-200 cursor-pointer">
+                            <Link to={isAuthenticate && user?.role === 'vendor' ?'/admin/setting' : '/user/setting' } className="flex items-center gap-2">
+                                <Settings className="w-5 h-5" /> Profile Settings
+                            </Link>
+                        </li>
+                        <li
+                            onClick={handleOnclickLogout}
+                            className="px-4 py-2 hover:bg-gray-200 cursor-pointer"
+                        >
+                            <div className="flex items-center gap-2">
+                                <LogOut className="w-5 h-5" /> Logout
+                            </div>
+                        </li>
+                        {isAuthenticate && user?.role === 'vendor'?
+                            <li className="px-4 py-2 hover:bg-gray-200 cursor-pointer">
+                                <Link to="/admin/payments" className="flex items-center gap-2">
+                                <IndianRupee className="w-5 h-5"/> Payments
+                                </Link>
+                            </li> 
+                            :   <li className="px-4 py-2 hover:bg-gray-200 cursor-pointer">
+                                    <Link to="/user/money-recieved" className="flex items-center gap-2">
+                                    <IndianRupee className="w-5 h-5"/> Total Money Recieved
+                                </Link>
+                            </li>
+
+                        }
+                        {isAuthenticate && user?.role === 'vendor'?
+                            <li className="px-4 py-2 hover:bg-gray-200 cursor-pointer">
+                                <Link to="/admin/schedule" className="flex items-center gap-2">
+                                    <PackageCheck className="w-5 h-5" /> Schedule
+                                </Link>
+                            </li> 
+                            : <li className="px-4 py-2 hover:bg-gray-200 cursor-pointer">
+                            <Link to="/user/waste-price" className="flex items-center gap-2">
+                                <PackageCheck className="w-5 h-5" /> See waste price
+                            </Link>
+                        </li>
+                        }
+                        {isAuthenticate && user?.role === 'vendor'?
+                            <li className="px-4 py-2 hover:bg-gray-200 cursor-pointer">
+                                <Link to="/admin/add-city" className="flex items-center gap-2">
+                                    <Building2 className="w-5 h-5" /> Add City
+                                </Link>
+                            </li> 
+                            : <li className="px-4 py-2 hover:bg-gray-200 cursor-pointer">
+                            <Link to="/user/add-address" className="flex items-center gap-2">
+                                <Building2  className="w-5 h-5" /> Addresses
+                            </Link>
+                        </li>
+                        }
+                        {
+                            isAuthenticate && user?.role === 'vendor' ? 
+                                <li className="px-4 py-2 hover:bg-gray-200 cursor-pointer">
+                                    <Link to="/admin/all-city" className="flex items-center gap-2">
+                                        <GalleryHorizontalEnd className="w-5 h-5" /> All Cities
+                                    </Link>
+                                </li>
+                            : null
+                        }
+                    </ul>
+                </div>
             )}
         </header>
     );

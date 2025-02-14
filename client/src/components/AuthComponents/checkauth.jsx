@@ -9,9 +9,9 @@ export default function CheckAuth({isAuthenticate,user,children}){
 
     if (isAuthenticate && (location.pathname.includes('/auth') || location.pathname === '/')) {
         if (user?.role === 'vendor') {
-            return <Navigate to={'/admin'}/>
+            return <Navigate to={'/admin/home'}/>
         } else {
-            return <Navigate to={'/user'}/>
+            return <Navigate to={'/user/home'}/>
         }
     }
 
