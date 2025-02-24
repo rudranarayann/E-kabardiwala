@@ -17,8 +17,8 @@ export default function CityCard({singleCity}){
     }
 
     return (
-        <div className="flex flex-col border rounded-lg border-black w-full text-gray-700 hover:shadow-2xl">
-            <h1 className="border-b border-black p-4 text-xl font-semibold"><Castle /> {singleCity?.city}</h1>
+        <div className="flex flex-col border-2 rounded-lg  w-full text-gray-700 hover:shadow-2xl shadow-2xl">
+            <h1 className="border-b-2  p-4 text-xl font-semibold"><Castle /> {singleCity?.city}</h1>
             <div className="flex flex-col gap-2 p-4">
                 <div className="flex justify-evenly items-center">
                     <p className="font-semibold">Plastic</p>

@@ -15,11 +15,12 @@ export default function AllCity(){
 
     return (
         <div className="flex flex-col gap-6 min-h-screen">
-            <h1 className=" border-b border-black text-2xl font-semibold py-5 px-3">All Cities</h1>
-            <div className="flex flex-col md:flex-row gap-6 p-4">
+            <h1 className=" border-b-2  text-2xl font-semibold py-5 px-3">All Cities</h1>
+            <div className="grid md:grid-cols-4 grid-cols-1 gap-6 p-4">
                 {
                     prices && prices.length > 0 ? 
-                    prices.map((singleCity,index)=><CityCard key={index} singleCity={singleCity}/>) : null
+                    prices.map((singleCity,index)=><CityCard key={index} singleCity={singleCity}/>) : 
+                    <div>No cities available , please register</div>
                 }
             </div>
         </div>

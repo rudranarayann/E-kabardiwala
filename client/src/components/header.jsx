@@ -49,14 +49,14 @@ export default function Header() {
                     <p onClick={() => {toggle(isDropDownOpen, setDropDownOpen)
                         if(dropDownForCompany || isProfileOption) { setIsProfileOption(false); setDropDownForCompany(false)} 
                     }} className="hover:cursor-pointer flex items-center gap-2 hover:text-gray-300">
-                        Service {isDropDownOpen ? <ChevronUp /> : <ChevronDown />}
+                        Services {isDropDownOpen ? <ChevronUp /> : <ChevronDown />}
                     </p>
 
                     {/* when clicked in service dropdown button then it shows respective options wheather login person is a vendor or User */}
                     {isDropDownOpen && (
-                        <ul className="absolute left-0 mt-2 w-48 top-[85px] md:top-[66px] bg-white text-black shadow-lg rounded-lg z-50 overflow-hidden  ">
+                        <ul onClick={()=>{toggle(isDropDownOpen, setDropDownOpen)}} className="absolute left-0 mt-2 w-48 top-[85px] md:top-[53px] bg-white text-black shadow-lg rounded-lg z-50 overflow-hidden  ">
                             <li className="px-4 py-2 hover:bg-gray-200">
-                                <Link className="flex gap-3" to="/user/scrap"><Truck /> Sell Scrap</Link>
+                                <Link className="flex gap-3" to={`${isAuthenticate ? '/user/scrap': '/auth/signin-user'}`}><Truck /> Sell Scrap</Link>
                             </li>
                             <li className="px-4 py-2 hover:bg-gray-200">
                                 <Link className="flex gap-3" to="/vehicle-scrap"><RefreshCcw />Vehicle Scraping</Link>
@@ -82,7 +82,7 @@ export default function Header() {
 
                     {/* when clicked in service dropdown button then it shows respective options wheather login person is a vendor or User */}
                     {dropDownForCompany && (
-                        <ul className="absolute left-0 mt-2 w-48 top-[60px] md:top-[66px] bg-white text-black shadow-lg rounded-lg z-50 overflow-hidden  ">
+                        <ul onClick={()=>{toggle(dropDownForCompany, setDropDownForCompany)}} className="absolute left-0 mt-2 w-48 top-[60px] md:top-[53px] bg-white text-black shadow-lg rounded-lg z-50 overflow-hidden  ">
                             <li className="px-4 py-2 hover:bg-gray-200">
                                 <Link className="flex gap-3" to="/contact"> Contact</Link>
                             </li>
@@ -133,7 +133,7 @@ export default function Header() {
                         <p className="rounded-full border-2 border-white p-4" >
                             <UserRoundPen />
                         </p>
-                        <h1 className="font-bold">{(user?.username).toUpperCase()}</h1>
+                        <h1 className="font-bold">{user?(user?.username).toUpperCase():null}</h1>
                     </div>
                 ) : (
                     <Link className="border-2 rounded-full px-4 py-3 hover:cursor-pointer hover:bg-green-600 mr-4" to="/auth/signin-user">
@@ -147,14 +147,14 @@ export default function Header() {
 
     //main returned component for the header
     return (
-        <header className="bg-green-700 px-2 py-5 flex w-full justify-between flex-wrap items-center shadow-2xl">
+        <header className="bg-green-700 px-2 min-h-24 flex w-full justify-between flex-wrap items-center shadow-2xl">
             <div onClick={handleOnClickLogo} className="flex gap-2 items-center hover:cursor-pointer">
                 <i className="fa-solid fa-recycle fa-2xl"></i>
                 {/* <img className="h-15 w-20 rounded-md" src={Logo} alt="logo" /> */}
                 <h1 className="text-white text-[15px] md:text-[25px] font-semibold hover:text-gray-300">SCRAP COLLECTOR</h1>
             </div>
 
-            {/* this is when screen is for mobile and a option button facilate to shows related header links */}
+            {/* this is when view is for mobile and a option button facilate to shows related header links */}
             <div className="hidden md:flex items-center gap-[50px] text-white">
                 <HeaderLinks />
             </div>
@@ -176,7 +176,7 @@ export default function Header() {
 
             {/* it shows the option when you clicked on Profile symbol*/}
             {isProfileOption && (
-                <div className="absolute top-[124px] right-0 overflow-hidden bg-white text-black shadow-lg rounded-lg z-50">
+                <div onClick={()=>{toggle(isProfileOption, setIsProfileOption)}} className="absolute top-[96px] right-0 overflow-hidden bg-white text-black shadow-lg rounded-lg z-50">
                     <ul>
                         <li className="px-4 py-2 hover:bg-gray-200 cursor-pointer">
                             <Link to={isAuthenticate && user?.role === 'vendor' ?'/admin/setting' : '/user/setting' } className="flex items-center gap-2">
@@ -223,7 +223,7 @@ export default function Header() {
                                 </Link>
                             </li> 
                             : <li className="px-4 py-2 hover:bg-gray-200 cursor-pointer">
-                            <Link to="/user/add-address" className="flex items-center gap-2">
+                            <Link to="/user/address" className="flex items-center gap-2">
                                 <Building2  className="w-5 h-5" /> Addresses
                             </Link>
                         </li>

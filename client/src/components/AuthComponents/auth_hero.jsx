@@ -5,7 +5,7 @@ import logo from '../../assets/online-kawadiwala_logo.png'
 export default function AuthHeroComponent(){
     const navigate = useNavigate();
     return (
-        <div className="flex flex-col gap-2 bg-green-700 justify-center items-center  shadow-lg">
+        <div className="flex flex-col gap-2 bg-green-700 justify-center items-center shadow-lg ">
             <div className='h-32 w-32 rounded-lg overflow-hidden '>
                 <img onClick={()=>navigate('/')} className='object-cover h-full w-full hover:cursor-pointer ' src={logo} alt="logo" />
             </div>

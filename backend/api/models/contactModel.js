@@ -18,7 +18,7 @@ const contactSchema = new mongoose.Schema(
       type: String, // Use String to accommodate different formats like country codes
       required: true,
     },
-    whatsapp: {
+    subject: {
       type: String, // Use String to handle WhatsApp numbers with country codes
       required: false, // Optional if some users don't provide it
     },

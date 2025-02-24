@@ -29,6 +29,9 @@ export default function AddCity(){
                 setFormData(initialState);
                 alert('City added successfully');
                 navigate('/admin/all-city');
+            }else{
+                console.log(data.payload);
+                alert(data?.payload?.message);
             }
         })
        
@@ -36,7 +39,7 @@ export default function AddCity(){
 
     return (
         <div className="min-h-screen flex w-full justify-center items-center flex-col gap-10">
-            <h1 className="text-3xl font-bold text-gray-500 border-b pb-4">Add another city to starting your vendorship</h1>
+            <h1 className="text-3xl font-bold text-gray-500 border-b pb-4 px-6">Add another city to starting your vendorship</h1>
             <CommonForm formControls={addcity} formData={formData} setFormData={setFormData} buttonText={'Add City'} onSubmit={handleAddCity} selectItem={odishaCities}/>
         </div>
     )

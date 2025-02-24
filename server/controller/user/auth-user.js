@@ -5,9 +5,9 @@ const jwt = require('jsonwebtoken');
 const registerUser = async(req,res)=>{
     const{username,email,password} = req.body;
     if(!username || !email || !password){
-        return res.status(400).json({
+        return res.json({
             success : false,
-            message : 'Something not found !'
+            message : 'Please re-enter!'
         })
     }
     
@@ -45,7 +45,7 @@ const registerUser = async(req,res)=>{
 const loginUser = async(req,res)=>{
     const {email,password} = req.body;
     if(!email || !password){
-        return res.status(400).json({
+        return res.json({
             success : false,
             message : 'Email or password not found !'
         })
@@ -54,7 +54,7 @@ const loginUser = async(req,res)=>{
     try{
         const checkUser = await userAuth.findOne({email});
         if(!checkUser){
-            return res.status(400).json({
+            return res.json({
                 succes : false,
                 message : 'User is not found !'
             })
@@ -62,7 +62,7 @@ const loginUser = async(req,res)=>{
 
         const checkPasswordMatch = await bcrypt.compare(password,checkUser.password);
         if(!checkPasswordMatch){
-            return res.status(400).json({
+            return res.json({
                 success : false,
                 message : 'Wrong password'
             })

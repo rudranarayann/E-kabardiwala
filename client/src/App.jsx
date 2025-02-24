@@ -25,6 +25,8 @@ import AdminHeroPage from "./components/admin/admin-hero";
 import AddCity from "./components/admin/add-city";
 import UpdatePrice from "./components/admin/update-price";
 import AllCity from "./components/admin/all-city";
+import Address from "./components/user/address";
+import WastePrice from "./components/user/scrap-price";
 
 function App() {
   const dispatch = useDispatch();
@@ -75,6 +77,8 @@ function App() {
         }>
           <Route path="home" element={<UserHome/>}/>
           <Route path="scrap" element={<ScrapRequest/>}/>
+          <Route path="address" element={<Address/>}/>
+          <Route path="waste-price" element={<WastePrice/>}/>
         </Route>
 
         <Route path="/contact" element={

@@ -20,14 +20,16 @@ export default function UserRegistration(){
         event.preventDefault();
         dispatch(userRegistration(formData)).then((data)=>{
             if(data?.payload?.success){
-                alert('User Registration successfull.');
+                alert(data?.payload?.message);
                 setFormData(intitialState);
+            }else{
+                alert(data?.payload?.message);
             }
         });
     }
 
     return (
-        <div className="flex flex-col justify-center items-center gap-20">
+        <div className="flex flex-col justify-center items-center gap-20 py-6">
             <div>
                 <h1 className="text-4xl font-extrabold">Registration For User </h1>
                 <p className="text-xl pt-5">Already have an account, <Link to={'/auth/signin-user'} className="text-blue-500 underline ">Sign In</Link></p>

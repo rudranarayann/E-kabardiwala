@@ -3,7 +3,7 @@ import axios from "axios";
 import { createSlice, createAsyncThunk } from "@reduxjs/toolkit";
 const initialState = {
     isLoading : false,
-    prices : []
+    prices : [],
 }
 
 export const cmpRegistrationVendor = createAsyncThunk(
@@ -60,7 +60,7 @@ const vendorRegistrationSlice = createSlice({
             state.isLoading = true;
         }).addCase(cmpRegistrationVendor.fulfilled,(state,action)=>{
             state.isLoading = false;
-            state.prices = action?.payload?.data;
+            state.prices = action?.payload?.success ? (action?.payload?.data) : [];
         }).addCase(cmpRegistrationVendor.rejected,(state,action)=>{
             state.isLoading = false;
             state.prices = [];
@@ -68,7 +68,7 @@ const vendorRegistrationSlice = createSlice({
             state.isLoading = true;
         }).addCase(addCitySlice.fulfilled,(state,action)=>{
             state.isLoading = false;
-            state.prices = action?.payload?.data;
+            state.prices = action?.payload?.success ? (action?.payload?.data) : [];
         }).addCase(addCitySlice.rejected,(state,action)=>{
             state.isLoading = false;
             state.prices = [];
@@ -76,7 +76,7 @@ const vendorRegistrationSlice = createSlice({
             state.isLoading = true;
         }).addCase(fetchAllCity.fulfilled,(state,action)=>{
             state.isLoading = false;
-            state.prices = action?.payload?.data;
+            state.prices = action?.payload?.success ?(action?.payload?.data) : [];
         }).addCase(fetchAllCity.rejected,(state,action)=>{
             state.isLoading = false;
             state.prices = [];
@@ -84,7 +84,7 @@ const vendorRegistrationSlice = createSlice({
             state.isLoading = true;
         }).addCase(deleteCity.fulfilled,(state,action)=>{
             state.isLoading = false;
-            state.prices = action?.payload?.data;
+            state.prices = action?.payload?.success ? (action?.payload?.data) : [];
         }).addCase(deleteCity.rejected,(state,action)=>{
             state.isLoading = false;
             state.prices = [];
@@ -92,7 +92,7 @@ const vendorRegistrationSlice = createSlice({
             state.isLoading = true;
         }).addCase(updatePrice.fulfilled,(state,action)=>{
             state.isLoading = false;
-            state.prices = action?.payload?.data;
+            state.prices = action?.payload?.success ? (action?.payload?.data) : [];
         }).addCase(updatePrice.rejected,(state,action)=>{
             state.isLoading = false;
             state.prices = [];

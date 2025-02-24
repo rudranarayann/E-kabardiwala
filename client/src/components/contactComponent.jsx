@@ -2,6 +2,9 @@ import { Mail, MapPin, PhoneCall } from "lucide-react";
 import CommonForm from "../common/commonform";
 import { contactForm } from "../config/config";
 import { useState } from "react";
+import { useDispatch} from "react-redux";
+import { saveContact } from "../slice/contact/contact-slice";
+
 
 export default function ContactComponent() {
     const initialState = {
@@ -12,9 +15,18 @@ export default function ContactComponent() {
         message : ''
     }
     const [formData,setFormData] = useState(initialState);
+    const dispatch = useDispatch()
 
-    function handleContactOnSubmit(){
-
+    function handleContactOnSubmit(e){
+        e.preventDefault();
+        dispatch(saveContact({...formData})).then((data)=>{
+            if(data?.payload?.success){
+                alert(data?.payload?.message);
+                setFormData(initialState);
+            }else{
+                alert(data?.payload?.message);
+            }
+        })
     }
 
     return (
@@ -44,7 +56,7 @@ export default function ContactComponent() {
                     </div>
                 </div>
 
-                <div className="pl-5 md:pl-0">
+                <div className="px-7 md:px-0">
                     <CommonForm formControls={contactForm} buttonText={'Send Message'} formData={formData} setFormData={setFormData} onSubmit={handleContactOnSubmit}/>
                 </div>
             </div>

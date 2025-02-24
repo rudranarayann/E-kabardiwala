@@ -6,7 +6,7 @@ const registrationVendor = async(req,res)=>{
     console.log()
     try{
         if(!vendorid || !vendorname  || !location || !city  || !plastic  || !metal  || !glass  || !paper){
-            return res.status(400).json({
+            return res.json({
                 message : 'Something Missing !',
                 success : false,
             })
@@ -62,9 +62,9 @@ const addCity = async(req,res)=>{
 
         const vendor = await VendorRegistration.findOne({vendorid});
         if(!vendor){
-            return res.status(404).json({
+            return res.json({
                 success : false,
-                message : 'First register then try to another city !'
+                message : 'First register then try to add another city !'
             })
         }
 
@@ -79,7 +79,7 @@ const addCity = async(req,res)=>{
                 paper
             })
         }else{
-            return res.status(400).json({
+            return res.json({
                 success : false,
                 message : "Already exists !"
             })
@@ -108,7 +108,7 @@ const updatePrice = async(req,res)=>{
 
     try{
         if(!vendorid || !city  || !plastic  || !metal  || !glass  || !paper){
-            return res.status(400).json({
+            return res.json({
                 message : 'Something Missing !',
                 success : false,
             })
@@ -116,7 +116,7 @@ const updatePrice = async(req,res)=>{
 
         let newVendor = await VendorRegistration.findOne({vendorid});
         if(!newVendor){
-            return res.status(400).json({
+            return res.json({
                 message : 'Document Not Found !',
                 success : false,
             })
@@ -125,8 +125,8 @@ const updatePrice = async(req,res)=>{
         const findIndexOfCurrentCity = newVendor.prices.findIndex(item => item.city.toString() === city);
 
         if(findIndexOfCurrentCity === -1){
-            return res.status(400).json({
-                message : 'City no found !',
+            return res.json({
+                message : 'City not found !',
                 success : false,
             })
         }else{
@@ -164,7 +164,7 @@ const fetchRegisteredCities = async(req,res)=>{
 
         let newVendor = await VendorRegistration.findOne({vendorid});
         if(!newVendor){
-            return res.status(400).json({
+            return res.json({
                 message : 'Document Not Found !',
                 success : false,
             })
@@ -188,7 +188,7 @@ const deleteCity = async(req,res)=>{
 
     try{
         if(!vendorid || !city ){
-            return res.status(400).json({
+            return res.json({
                 message : 'Something Missing !',
                 success : false,
             })
@@ -196,7 +196,7 @@ const deleteCity = async(req,res)=>{
 
         let newVendor = await VendorRegistration.findOne({vendorid});
         if(!newVendor){
-            return res.status(400).json({
+            return res.json({
                 message : 'Document Not Found !',
                 success : false,
             })
@@ -205,7 +205,7 @@ const deleteCity = async(req,res)=>{
         const findIndexOfCurrentCity = newVendor.prices.findIndex(item => item.city.toString() === city);
 
         if(findIndexOfCurrentCity === -1){
-            return res.status(400).json({
+            return res.json({
                 message : 'City not found !',
                 success : false,
             })

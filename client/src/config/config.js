@@ -251,3 +251,47 @@ export const updatePriceControl = [
         type : 'text'
     }
 ]
+
+export const addressFormControls = [
+    {
+        name: 'name',
+        label: 'Name',
+        placeholder: 'Enter Name',
+        componentType: 'input',
+        type : 'text'
+    },
+    {
+        name: 'address',
+        label: 'Address',
+        placeholder: 'Enter Address',
+        componentType: 'input',
+        type: 'text',
+    },
+    {
+        name: 'city',
+        label: 'City',
+        placeholder: 'Enter your city',
+        componentType: 'input',
+        type: 'text',
+    },
+    {
+        name: 'phone',
+        label: 'Phone',
+        placeholder: 'Enter phone no.',
+        componentType: 'input',
+        type: 'text',
+    },
+    {
+        name: 'pincode',
+        label: 'Pincode',
+        placeholder: 'Enter your pincode',
+        componentType: 'input',
+        type: 'text',
+    },
+    {
+        name: 'landmark',
+        label: 'Landmark',
+        placeholder: 'Near places',
+        componentType: 'textarea',
+    },
+]

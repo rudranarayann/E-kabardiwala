@@ -15,7 +15,7 @@ export default function Footer() {
         },
         {
             label: 'Sell Scarp',
-            path: ''
+            path: '/user/scrap'
         },
         {
             label: 'About',

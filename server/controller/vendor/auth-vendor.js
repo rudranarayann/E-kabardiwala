@@ -5,16 +5,16 @@ const jwt = require('jsonwebtoken');
 const registerVendor = async(req,res)=>{
     const{username,email,password,companyname} = req.body;
     if(!username || !email || !password || !companyname){
-        return res.status(400).json({
+        return res.json({
             success : false,
-            message : 'Something not found !'
+            message : 'Please re-enter !'
         })
     }
 
     try{
         const checkVendor = await VendorAuth.findOne({email});
         if(checkVendor){
-            res.json({
+            return res.json({
                 success : false,
                 message : 'User already exists',
             })
@@ -46,7 +46,7 @@ const registerVendor = async(req,res)=>{
 const loginVendor = async(req,res)=>{
     const {email,password} = req.body;
     if(!email || !password){
-        return res.status(400).json({
+        return res.json({
             success : false,
             message : 'Email or password not found !'
         })
@@ -55,7 +55,7 @@ const loginVendor = async(req,res)=>{
     try{
         const checkVendor = await VendorAuth.findOne({email});
         if(!checkVendor){
-            return res.status(400).json({
+            return res.json({
                 succes : false,
                 message : 'User is not found !'
             })
@@ -63,7 +63,7 @@ const loginVendor = async(req,res)=>{
 
         const checkPasswordMatch = await bcrypt.compare(password,checkVendor.password);
         if(!checkPasswordMatch){
-            return res.status(400).json({
+            return res.json({
                 success : false,
                 message : 'Wrong password'
             })

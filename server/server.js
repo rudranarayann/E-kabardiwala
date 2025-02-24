@@ -4,6 +4,9 @@ const cors = require('cors');
 const cookieParser = require('cookie-parser');
 const authUser = require('../server/routers/user/user-router')
 const authVendor = require('../server/routers/vendor/vendor-router')
+const contact = require('../server/routers/contact/contact-router')
+const address = require('../server/routers/address/address-router')
+const user = require('../server/routers/user/user-realated-route')
 
 
 //Connection for mongo ,id : suchitrakumar098@gmail.com
@@ -43,6 +46,9 @@ server.use(express.json());
 
 server.use('/api/auth/user',authUser);
 server.use('/api/auth/vendor',authVendor);
+server.use('/api/user/address',address);
+server.use('/api/contact',contact);
+server.use('/api/prices',user);
 
 
 const PORT = 3500;

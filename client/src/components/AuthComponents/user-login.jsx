@@ -18,14 +18,17 @@ export default function UserLogin(){
         event.preventDefault();
         dispatch(userLogin(formData)).then((data)=>{
             if(data?.payload?.success){
-                alert('successfully user logged in');
+                alert(data?.payload?.message);
                 setFormData(intitialState);
-            };
+            }else{
+                console.log(data.payload)
+                alert(""+data?.payload?.message);
+            }
         });
     }
 
     return (
-        <div className="flex flex-col justify-center items-center gap-20">
+        <div className="flex flex-col justify-center items-center gap-20 py-6">
             <div>
                 <h1 className=" text-4xl font-extrabold ">Log into User account</h1>
                 <p className="text-xl pt-5">It's your first time then , <Link to={'/auth/signup-user'} className="text-blue-500 underline ">Sign Up</Link></p>

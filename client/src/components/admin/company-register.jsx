@@ -3,10 +3,12 @@ import CommonForm from "../../common/commonform";
 import {odishaCities,vendorRegistrationConfig} from '../../config/config'
 import { useDispatch, useSelector } from "react-redux";
 import { cmpRegistrationVendor } from "../../slice/vendor/registration-slice-vendor";
+import { useNavigate } from "react-router-dom";
 
 export default function VendorCompanyRegistration(){
     const dispatch = useDispatch();
     const { user} = useSelector(state => state.auth);
+    const navigate = useNavigate();
 
     const initialValue = {
         vendorname : '',
@@ -26,6 +28,7 @@ export default function VendorCompanyRegistration(){
                 console.log(data.payload);
                 setFormData(initialValue);
                 alert("Vendor Company registration successful...");
+                navigate('/admin/all-city');
             }
         });
     }
