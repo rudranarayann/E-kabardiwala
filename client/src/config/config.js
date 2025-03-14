@@ -295,3 +295,31 @@ export const addressFormControls = [
         componentType: 'textarea',
     },
 ]
+
+export const scrapRequestForm = [
+    {
+        name : 'scraptype',
+        label : 'Scrap Type',
+        componentType : 'select',
+        type : 'text',
+        placeholder : 'Select a scrap'
+    },
+    {
+        name : 'quantity',
+        label : 'Qty',
+        componentType : 'input',
+        type : 'text',
+        placeholder : 'Enter scrap quantity'
+    },
+    {
+        name : 'description',
+        label : 'Description',
+        componentType : 'textarea',
+        placeholder : 'Leave a note about your scrap',
+        type : 'text'
+    }
+]
+
+export const scrapType = [
+    "plastic","metal","glass","paper","e-waste"
+]

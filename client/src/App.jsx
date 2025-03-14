@@ -27,6 +27,7 @@ import UpdatePrice from "./components/admin/update-price";
 import AllCity from "./components/admin/all-city";
 import Address from "./components/user/address";
 import WastePrice from "./components/user/scrap-price";
+import UserRequestForm from "./components/user/userRequestForm";
 
 function App() {
   const dispatch = useDispatch();
@@ -79,6 +80,7 @@ function App() {
           <Route path="scrap" element={<ScrapRequest/>}/>
           <Route path="address" element={<Address/>}/>
           <Route path="waste-price" element={<WastePrice/>}/>
+          <Route path="request/:city/:vendorid/:userid" element={<UserRequestForm/>}/>
         </Route>
 
         <Route path="/contact" element={

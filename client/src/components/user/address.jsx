@@ -92,7 +92,7 @@ export default function Address(){
                 <div className="grid grid-cols-1 md:grid-cols-4 gap-5  ">
                     {
                         addressList && addressList.length > 0 ? 
-                            addressList.map((singleAddress,index)=><AddressCard key={index} handleAddressDelete={handleAddressDelete} handleAddressEdit={handleAddressEdit} singleAddress={singleAddress}/>)
+                            addressList.map((singleAddress,index)=><AddressCard key={index} handleAddressDelete={handleAddressDelete} handleAddressEdit={handleAddressEdit} singleAddress={singleAddress} flag={true}/>)
                         : <h1 className="text-3xl text-gray-700 font-semibold">No address found ! </h1>
 
                     }

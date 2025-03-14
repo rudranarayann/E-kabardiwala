@@ -7,6 +7,7 @@ const authVendor = require('../server/routers/vendor/vendor-router')
 const contact = require('../server/routers/contact/contact-router')
 const address = require('../server/routers/address/address-router')
 const user = require('../server/routers/user/user-realated-route')
+const scrapRequest = require('../server/routers/user/scrap-request-route')
 
 
 //Connection for mongo ,id : suchitrakumar098@gmail.com
@@ -49,6 +50,7 @@ server.use('/api/auth/vendor',authVendor);
 server.use('/api/user/address',address);
 server.use('/api/contact',contact);
 server.use('/api/prices',user);
+server.use('/api/scrap',scrapRequest);
 
 
 const PORT = 3500;
