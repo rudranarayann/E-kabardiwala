@@ -4,6 +4,7 @@ import vendorRegistration from '../slice/vendor/registration-slice-vendor';
 import contactSlice from '../slice/contact/contact-slice'
 import addressSlice from '../slice/address/address-slice'
 import userSlice from '../slice/user/user-related';
+import scrapRequest from '../slice/user/scrap-request-slice';
 
 const store = configureStore({
     reducer :{
@@ -12,6 +13,7 @@ const store = configureStore({
         contact : contactSlice,
         address : addressSlice,
         user : userSlice,
+        scrap : scrapRequest,
     }
 });
 

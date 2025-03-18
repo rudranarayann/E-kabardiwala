@@ -4,12 +4,10 @@ const ScrapRequestSchema = new mongoose.Schema({
     vendorid : {
         type : String,
         required : true,
-        unique : true
     },
     userid : {
         type : String,
         required : true,
-        unique : true
     },
     city : {
         type : String,
@@ -41,7 +39,7 @@ const ScrapRequestSchema = new mongoose.Schema({
             required : true,
         }
     },
-    scrapType : {
+    scraptype : {
         required : true,
         type : String,
     },

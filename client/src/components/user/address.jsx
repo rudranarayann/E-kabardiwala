@@ -83,7 +83,7 @@ export default function Address(){
         dispatch(fetchAllAddress({userid : user?.id}));
     },[dispatch])
 
-    console.log(addressList);
+    // console.log(addressList);
     return (
         <div className="flex flex-col min-h-screen">
             <h1 className="px-6 py-3 border-b-2  text-2xl ">Addresses</h1>

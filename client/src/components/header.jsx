@@ -179,8 +179,8 @@ export default function Header() {
                 <div onClick={()=>{toggle(isProfileOption, setIsProfileOption)}} className="absolute top-[96px] right-0 overflow-hidden bg-white text-black shadow-lg rounded-lg z-50">
                     <ul>
                         <li className="px-4 py-2 hover:bg-gray-200 cursor-pointer">
-                            <Link to={isAuthenticate && user?.role === 'vendor' ?'/admin/setting' : '/user/setting' } className="flex items-center gap-2">
-                                <Settings className="w-5 h-5" /> Profile Settings
+                            <Link to={isAuthenticate && user?.role === 'vendor' ?'/admin/seeallorder' : '/user/allpickups' } className="flex items-center gap-2">
+                                <Settings className="w-5 h-5" />{ user?.role === 'vendor' ?'See All Pickups ':'Pick-ups'}
                             </Link>
                         </li>
                         <li

@@ -3,6 +3,6 @@ const { requestScrap } = require ('../../controller/ScrapRequest/scrapRequestFor
 const express = require('express');
 const router = express.Router();
 
-router.post('/request',requestScrap)
+router.post('/request/:city/:userid/:vendorid',requestScrap)
 
 module.exports = router;

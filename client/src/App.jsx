@@ -28,6 +28,7 @@ import AllCity from "./components/admin/all-city";
 import Address from "./components/user/address";
 import WastePrice from "./components/user/scrap-price";
 import UserRequestForm from "./components/user/userRequestForm";
+import AllPickups from "./components/user/allPickUps";
 
 function App() {
   const dispatch = useDispatch();
@@ -80,6 +81,7 @@ function App() {
           <Route path="scrap" element={<ScrapRequest/>}/>
           <Route path="address" element={<Address/>}/>
           <Route path="waste-price" element={<WastePrice/>}/>
+          <Route path="allpickups" element={<AllPickups/>}/>
           <Route path="request/:city/:vendorid/:userid" element={<UserRequestForm/>}/>
         </Route>
 
