@@ -29,6 +29,7 @@ import Address from "./components/user/address";
 import WastePrice from "./components/user/scrap-price";
 import UserRequestForm from "./components/user/userRequestForm";
 import AllPickups from "./components/user/allPickUps";
+import AllOrders from "./components/admin/all-orders";
 
 function App() {
   const dispatch = useDispatch();
@@ -60,7 +61,7 @@ function App() {
           <Route path="signup-user" element={<UserRegistration />} />
           <Route path="signup-vendor" element={<VendorRegistration />} />
         </Route>
-
+        
         <Route path="/admin" element={
           <CheckAuth isAuthenticate={isAuthenticate} user={user}>
             <AdminLayout/>
@@ -71,6 +72,7 @@ function App() {
           <Route path="add-city" element={<AddCity/>}/>
           <Route path="update-price/:city" element={<UpdatePrice/>}/>
           <Route path="all-city" element={<AllCity/>}/>
+          <Route path="seeallorder" element={<AllOrders/>}/>
         </Route>
         <Route path="/user" element={
           <CheckAuth isAuthenticate={isAuthenticate} user={user}>

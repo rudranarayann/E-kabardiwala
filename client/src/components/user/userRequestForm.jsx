@@ -5,7 +5,7 @@ import { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import AddressCard from "./addressCard";
 import { fetchAllAddress } from "../../slice/address/address-slice";
-import { useParams } from 'react-router-dom';
+import { useLocation, useParams } from 'react-router-dom';
 import { scrapReq } from "../../slice/user/scrap-request-slice";
 
 export default function UserRequestForm(){
@@ -23,7 +23,11 @@ export default function UserRequestForm(){
     const [selectedAddress,setSelectedAddress] = useState(null);
     const dispatch = useDispatch();
     const{userid,vendorid,city} = useParams()
+    const location  = useLocation();
+    const{state} = location;
+    console.log(state);
 
+    
     function onSubmitHandleRequestForm(e){
         e.preventDefault();
         if(!selectedAddress){
@@ -31,7 +35,8 @@ export default function UserRequestForm(){
         }else{
             const updataFormData = {
                 ...formData,
-                address : selectedAddress
+                address : selectedAddress,
+                vendorname : state,
             }
     
             dispatch(scrapReq({

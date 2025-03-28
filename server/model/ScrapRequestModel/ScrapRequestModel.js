@@ -5,6 +5,10 @@ const ScrapRequestSchema = new mongoose.Schema({
         type : String,
         required : true,
     },
+    vendorname : {
+        type : String,
+        required : true,
+    },
     userid : {
         type : String,
         required : true,

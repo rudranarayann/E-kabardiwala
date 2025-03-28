@@ -180,7 +180,7 @@ export default function Header() {
                     <ul>
                         <li className="px-4 py-2 hover:bg-gray-200 cursor-pointer">
                             <Link to={isAuthenticate && user?.role === 'vendor' ?'/admin/seeallorder' : '/user/allpickups' } className="flex items-center gap-2">
-                                <Settings className="w-5 h-5" />{ user?.role === 'vendor' ?'See All Pickups ':'Pick-ups'}
+                                <Settings className="w-5 h-5" />{ user?.role === 'vendor' ?'See All Pickups ':'Requests'}
                             </Link>
                         </li>
                         <li

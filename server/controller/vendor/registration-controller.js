@@ -228,4 +228,6 @@ const deleteCity = async(req,res)=>{
     }
 }
 
+
+
 module.exports = {registrationVendor,updatePrice,fetchRegisteredCities,deleteCity,addCity};

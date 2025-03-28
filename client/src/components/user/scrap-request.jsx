@@ -44,7 +44,8 @@ export default function ScrapRequest(){
     }
     
     function handleOnClickSelectCity(getCurrentSelectCity){
-        navigate(`/user/request/${selectedCity}/${getCurrentSelectCity.vendorid}/${user.id}`);
+        // console.log(getCurrentSelectCity,"getCurrentSelectCity");
+        navigate(`/user/request/${selectedCity}/${getCurrentSelectCity.vendorid}/${user.id}`,{state : getCurrentSelectCity.vendorname});
     }
 
     useEffect(()=>{
