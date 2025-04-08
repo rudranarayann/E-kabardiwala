@@ -54,6 +54,18 @@ const ScrapRequestSchema = new mongoose.Schema({
     description : {
         type : String,
         required : true
+    },
+    status : {
+        type : String,
+        default : 'pending'
+    },
+    schedule:{
+        type : Date,
+        default : '',
+    },
+    paymentStatus:{
+        type : String,
+        defualt : 'pending'
     }
 });
 

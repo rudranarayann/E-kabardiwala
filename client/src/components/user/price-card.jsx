@@ -5,19 +5,19 @@ export default function PriceCard({singleItem,submitBtn,handleOnClickSelectCity}
             <div className="flex flex-col p-3 gap-3 text-gray-700">
                 <div className="flex justify-evenly">
                     <span>Plastic</span>
-                    <p className="font-bold">{singleItem?.plastic}</p>
+                    <p className="font-bold">Rs.{singleItem?.plastic}</p>
                 </div>
                 <div className="flex justify-evenly">
                     <span>Metal</span>
-                    <p className="font-bold">{singleItem?.metal}</p>
+                    <p className="font-bold">Rs.{singleItem?.metal}</p>
                 </div>
                 <div className="flex justify-evenly">
                     <span>Galss</span>
-                    <p className="font-bold">{singleItem?.glass}</p>
+                    <p className="font-bold">Rs.{singleItem?.glass}</p>
                 </div>
                 <div className="flex justify-evenly">
                     <span>Paper</span>
-                    <p className="font-bold">{singleItem?.paper}</p>
+                    <p className="font-bold">Rs.{singleItem?.paper}</p>
                 </div>
                 {
                     submitBtn ? <button onClick={()=>handleOnClickSelectCity(singleItem)} className="bg-green-400 px-4 py-2 rounded-lg text-black font-semibold hover:bg-green-600">{submitBtn}</button>

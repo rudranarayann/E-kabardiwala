@@ -206,7 +206,7 @@ export default function Header() {
                         }
                         {isAuthenticate && user?.role === 'vendor'?
                             <li className="px-4 py-2 hover:bg-gray-200 cursor-pointer">
-                                <Link to="/admin/schedule" className="flex items-center gap-2">
+                                <Link to="/admin/sheduling" className="flex items-center gap-2">
                                     <PackageCheck className="w-5 h-5" /> Schedule
                                 </Link>
                             </li> 

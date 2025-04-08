@@ -30,6 +30,7 @@ import WastePrice from "./components/user/scrap-price";
 import UserRequestForm from "./components/user/userRequestForm";
 import AllPickups from "./components/user/allPickUps";
 import AllOrders from "./components/admin/all-orders";
+import Sheduling from "./components/admin/sheduling";
 
 function App() {
   const dispatch = useDispatch();
@@ -73,6 +74,7 @@ function App() {
           <Route path="update-price/:city" element={<UpdatePrice/>}/>
           <Route path="all-city" element={<AllCity/>}/>
           <Route path="seeallorder" element={<AllOrders/>}/>
+          <Route path="sheduling" element={<Sheduling/>}/>
         </Route>
         <Route path="/user" element={
           <CheckAuth isAuthenticate={isAuthenticate} user={user}>

@@ -306,7 +306,7 @@ export const scrapRequestForm = [
     },
     {
         name : 'quantity',
-        label : 'Qty',
+        label : 'Qty in KG',
         componentType : 'input',
         type : 'text',
         placeholder : 'Enter scrap quantity'
