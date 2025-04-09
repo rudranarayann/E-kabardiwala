@@ -5,6 +5,7 @@ import { useDispatch, useSelector } from 'react-redux';
 import { fetchCityPrice } from '../../slice/user/user-related';
 import PriceCard from './price-card';
 import { useNavigate } from 'react-router-dom';
+import LoadingPage from '../../pages/LoadingPage/loading-page';
 
 export default function ScrapRequest(){
     const[selectedCity,setSelectedCity] = useState("");
@@ -74,7 +75,7 @@ export default function ScrapRequest(){
             
             {   
                 selectedCity ? (
-                    isLoading ? <h1 className='text-3xl font-semibold'>Loading.....</h1>
+                    isLoading ? <LoadingPage/>
                     :<div className='flex flex-col mt-10 gap-2 min-h-[80vh]'>
                         <h1 className='text-2xl font-bold text-gray-600 p-3 border-b-2 w-full'>Please select a Vendors</h1>
                         <div className='flex md:flex-row flex-col gap-4 max-h-[90vh] overflow-auto px-6'>

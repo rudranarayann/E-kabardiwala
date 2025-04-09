@@ -2,6 +2,7 @@ import { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux"
 import { fetchAllRequestVendor } from "../../slice/user/scrap-request-slice";
 import RequestCard from "../user/requestCard";
+import LoadingPage from "../../pages/LoadingPage/loading-page";
 
 export default function AllOrders() {
 
@@ -28,7 +29,7 @@ export default function AllOrders() {
                         allRequestVendor.map((singleRequest, index) => <RequestCard singleRequest={singleRequest} key={index} />)
                     : <h1 className="text-gray-600 text-lg">Empty order/Request list.....</h1>
                 }
-                </div>: <h1>Loading......</h1>
+                </div>: <LoadingPage/>
             }
             
         </div>

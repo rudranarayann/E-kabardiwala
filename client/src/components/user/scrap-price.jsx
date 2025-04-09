@@ -3,6 +3,7 @@ import SidebarCity from "./sidebar-city";
 import { fetchCityPrice } from "../../slice/user/user-related";
 import { useEffect, useState } from "react";
 import PriceCard from "./price-card";
+import LoadingPage from "../../pages/LoadingPage/loading-page";
 
 export default function WastePrice() {
     const [prices, setPrices] = useState([]);
@@ -52,7 +53,7 @@ export default function WastePrice() {
                     <h1 className="text-3xl font-bold px-4 py-2">{selectedCity}</h1>
                     <div className="p-5 flex flex-col md:flex-row gap-4">
                         {
-                            isLoading ? <h1 className="font-bold text-xl">Loading....</h1> :
+                            isLoading ? <LoadingPage/> : 
                                 prices && prices.length > 0 ?
                                     prices.map((singleItem, index) => <PriceCard key={index} singleItem={singleItem} />)
                                     : <h1 className="text-3xl font-semibold">Oops.....! No Vendors available in this city ! </h1>

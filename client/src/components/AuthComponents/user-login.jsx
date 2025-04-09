@@ -4,6 +4,7 @@ import { useState } from "react";
 import {userLoginForm} from '../../config/config'
 import { useDispatch } from "react-redux";
 import { userLogin } from "../../slice/user/user-auth-slice";
+import toast from "react-hot-toast";
 
 export default function UserLogin(){
     const intitialState = {
@@ -18,11 +19,10 @@ export default function UserLogin(){
         event.preventDefault();
         dispatch(userLogin(formData)).then((data)=>{
             if(data?.payload?.success){
-                alert(data?.payload?.message);
+                toast.success(data?.payload?.message || "Invalid credentials");
                 setFormData(intitialState);
             }else{
-                console.log(data.payload)
-                alert(""+data?.payload?.message);
+                toast.error(data?.payload?.message || "Invalid credentials");
             }
         });
     }

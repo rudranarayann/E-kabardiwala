@@ -2,6 +2,8 @@ import { useEffect } from "react";
 import { useDispatch, useSelector} from "react-redux";
 import { fetchAllRequestUser } from "../../slice/user/scrap-request-slice";
 import RequestCard from "./requestCard";
+import LoadingPage from "../../pages/LoadingPage/loading-page";
+import { Link } from "react-router-dom";
 
 export default function AllPickups(){
 
@@ -25,9 +27,9 @@ export default function AllPickups(){
                 {
                     allRequestUser && allRequestUser.length > 0 ? 
                         allRequestUser.map((singleRequest,index)=><RequestCard singleRequest={singleRequest}key={index}/>)
-                    : <h1 className="text-gray-600 text-lg">Oops no request is happend ! please request a pickup for your scrap....</h1>
+                    : <h1 className="text-gray-600 text-lg">Oops no request is happend ! please request a pickup for your scrap.... <span className="text-blue-600 underline hover:text-blue-400  "><Link to={'/user/scrap'}>Click Here</Link></span></h1>
                 }
-                </div> : <h1>Loading</h1>
+                </div> : <LoadingPage/>
             }
             
         </div>

@@ -4,6 +4,7 @@ import { addressFormControls } from "../../config/config";
 import { useDispatch, useSelector } from "react-redux";
 import { addAdderss, fetchAllAddress,deleteAddress, editAddress } from "../../slice/address/address-slice";
 import AddressCard from "./addressCard";
+import toast from "react-hot-toast";
 
 export default function Address(){
 
@@ -28,12 +29,12 @@ export default function Address(){
         if(isEdited !== null){
             dispatch(editAddress({formData,userid : user?.id,addressid : isEdited })).then((data)=>{
                 if(data?.payload?.success){
-                    alert(data?.payload?.message);
                     setIsEdited(null);
                     dispatch(fetchAllAddress({userid : user?.id}));
                     setFormData(initialState);
+                    toast.success(data?.payload?.message || "successfully address edited !");
                 }else{
-                    alert(data?.payload?.message);
+                    toast.error(data?.payload?.message || "Please try again");
                 }
             })
         }else{
@@ -44,9 +45,9 @@ export default function Address(){
             if(data?.payload?.success){
                 setFormData(initialState);
                 dispatch(fetchAllAddress({userid : user?.id}));
-                alert(data?.payload?.message);
+                toast.success(data?.payload?.message || "successfully address added !");
             }else{
-                alert(data?.payload?.message);
+                toast.error(data?.payload?.message || "Please try again");
             }
         })
     }
@@ -57,9 +58,9 @@ export default function Address(){
         dispatch(deleteAddress({userid : user?.id , addressid : getCurrentAddressId})).then((data)=>{
             if(data?.payload?.success){
                 dispatch(fetchAllAddress({userid : user?.id}));
-                alert(data?.payload?.message);
+                toast.success(data?.payload?.message || "Deleted successfully");
             }else{
-                alert(data?.payload?.message);
+                toast.error(data?.payload?.message || "Please try again");
             }
         })
         

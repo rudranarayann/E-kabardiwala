@@ -17,11 +17,16 @@ const ScrapRequestSchema = new mongoose.Schema({
         type : String,
         required : true,
     },
+    email:{
+        type : String,
+        required : true
+    },
     address : {
         name : {
             type : String,
             required : true,
         },
+        
         city : {
             type : String,
             required : true,
@@ -61,11 +66,11 @@ const ScrapRequestSchema = new mongoose.Schema({
     },
     schedule:{
         type : Date,
-        default : '',
+        default : 'Notify Soon',
     },
     paymentStatus:{
         type : String,
-        defualt : 'pending'
+        default : 'pending'
     }
 });
 

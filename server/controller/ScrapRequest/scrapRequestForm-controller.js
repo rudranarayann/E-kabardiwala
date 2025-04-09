@@ -2,7 +2,7 @@ const ScrapRequest = require("../../model/ScrapRequestModel/ScrapRequestModel")
 
 const requestScrap = async (req, res) =>{
     try{
-        const{scraptype, quantity, description,address,vendorname} = req.body;
+        const{scraptype, quantity, description,address,vendorname,email} = req.body;
         const{city,userid,vendorid} = req.params;
 
         if(!scraptype ||  !quantity ||  !description || !address || !city || !userid ||!vendorid || !vendorname){
@@ -17,13 +17,14 @@ const requestScrap = async (req, res) =>{
             userid,
             city,
             vendorname,
+            email : email,
             address : {
                 name : address.name,
                 phone : address.phone,
                 pincode : address.pincode,
                 landmark : address.landmark,
                 addresslane : address.address,
-                city : address.city
+                city : address.city,
             },
             quantity,
             description,

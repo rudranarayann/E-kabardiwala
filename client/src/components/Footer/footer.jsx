@@ -11,7 +11,7 @@ export default function Footer() {
     const quickLinks = [
         {
             label: 'Home',
-            path: user !== null && user?.role === 'vendor' ? '/admin/home' : '/user'
+            path: user !== null && user?.role === 'vendor' ? '/admin/home' : '/user/home'
         },
         {
             label: 'Sell Scarp',

@@ -31,6 +31,7 @@ import UserRequestForm from "./components/user/userRequestForm";
 import AllPickups from "./components/user/allPickUps";
 import AllOrders from "./components/admin/all-orders";
 import Sheduling from "./components/admin/sheduling";
+import { Toaster } from "react-hot-toast";
 
 function App() {
   const dispatch = useDispatch();
@@ -44,6 +45,7 @@ function App() {
 
   return (
     <Fragment>
+      <Toaster position="top-center" reverseOrder={false} />
       <Header/>
       <Routes>
         <Route path="/" element={

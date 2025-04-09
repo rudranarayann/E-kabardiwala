@@ -6,6 +6,7 @@ import { ChevronDown, ChevronUp, UserRoundPen, X, AlignJustifyIcon, LogOut, Sett
 import { useDispatch, useSelector } from "react-redux";
 import { userLogout, vendorLogout } from "../slice/user/user-auth-slice";
 import '@fortawesome/fontawesome-free/css/all.min.css';
+import toast from "react-hot-toast";
 
 
 export default function Header() {
@@ -27,11 +28,11 @@ export default function Header() {
     function handleOnclickLogout() {
         if (user?.role === 'vendor') {
             dispatch(vendorLogout()).then(() => {
-                alert('logged out successfully');
+                toast.success("You are logged out !");
             })
         } else {
             dispatch(userLogout()).then(() => {
-                alert('logged out successfully');
+                toast.success("You are logged out !");
             })
         }
     }
