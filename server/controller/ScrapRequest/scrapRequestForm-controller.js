@@ -48,6 +48,40 @@ const requestScrap = async (req, res) =>{
     }
 }
 
+const updateSchedule = async(req,res)=>{
+    try{
+        const {date} = req.body;
+        const{reqId} = req.params;
+        if(!date){
+            return res.status(400).json({
+                success : false,
+                message : "Something missing !"
+            })
+        }
+
+        const requestItem = await ScrapRequest.findByIdAndUpdate(reqId,{schedule:date},{new:true});
+        if(!requestItem){
+            return res.status(401).json({
+                success : false,
+                message : "Please try again !",
+            })
+        }
+
+        return res.status(201).json({
+            success : true,
+            message : "pickup has been scheduled",
+            data : requestItem,
+        })
+        
+    }catch(e){
+        console.log(e);
+        res.status(500).json({
+            success : false,
+            message : 'Internal error'
+        })
+    }
+}
+
 const fetchAllRequestsForVendor = async(req,res)=>{
     try{
         const{vendorid} = req.params;
@@ -100,4 +134,4 @@ const fetchAllRequestsByUser = async(req,res)=>{
         })
     }
 }
-module.exports = {requestScrap,fetchAllRequestsForVendor,fetchAllRequestsByUser}
+module.exports = {requestScrap,fetchAllRequestsForVendor,fetchAllRequestsByUser,updateSchedule}

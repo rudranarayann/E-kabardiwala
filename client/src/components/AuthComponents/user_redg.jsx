@@ -4,6 +4,7 @@ import { useState } from "react";
 import {userRegistrationForm} from '../../config/config'
 import { useDispatch } from 'react-redux'
 import { userRegistration } from "../../slice/user/user-auth-slice";
+import toast from "react-hot-toast";
 
 export default function UserRegistration(){
 
@@ -20,10 +21,10 @@ export default function UserRegistration(){
         event.preventDefault();
         dispatch(userRegistration(formData)).then((data)=>{
             if(data?.payload?.success){
-                alert(data?.payload?.message);
                 setFormData(intitialState);
+                toast.success(data?.payload?.message || "Successfully registered");
             }else{
-                alert(data?.payload?.message);
+                toast.error(data?.payload?.message || "Please try again !");
             }
         });
     }

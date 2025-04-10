@@ -43,8 +43,6 @@ server.use(
 )
 server.use(cookieParser());
 server.use(express.json());
-
-
 server.use('/api/auth/user',authUser);
 server.use('/api/auth/vendor',authVendor);
 server.use('/api/user/address',address);

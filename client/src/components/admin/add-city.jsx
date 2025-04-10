@@ -4,6 +4,7 @@ import {addcity,odishaCities} from "../../config/config"
 import { useDispatch, useSelector } from "react-redux";
 import { addCitySlice, fetchAllCity } from "../../slice/vendor/registration-slice-vendor";
 import { useNavigate } from "react-router-dom";
+import toast from "react-hot-toast";
 
 export default function AddCity(){
 
@@ -27,11 +28,11 @@ export default function AddCity(){
             if(data?.payload?.success){
                 dispatch(fetchAllCity({vendorid : user?.id}));
                 setFormData(initialState);
-                alert('City added successfully');
                 navigate('/admin/all-city');
+                toast.success(data?.payload?.message || "Added successfully done");
             }else{
-                console.log(data.payload);
-                alert(data?.payload?.message);
+                navigate("/admin/company-registration");
+                toast.error(data?.payload?.message);
             }
         })
        

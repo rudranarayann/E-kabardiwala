@@ -4,6 +4,7 @@ import {odishaCities,vendorRegistrationConfig} from '../../config/config'
 import { useDispatch, useSelector } from "react-redux";
 import { cmpRegistrationVendor } from "../../slice/vendor/registration-slice-vendor";
 import { useNavigate } from "react-router-dom";
+import toast from "react-hot-toast";
 
 export default function VendorCompanyRegistration(){
     const dispatch = useDispatch();
@@ -27,9 +28,9 @@ export default function VendorCompanyRegistration(){
             if(data?.payload?.success){
                 console.log(data.payload);
                 setFormData(initialValue);
-                alert("Vendor Company registration successful...");
                 navigate('/admin/all-city');
-            }
+                toast.success(data?.payload?.message || "Register successfully done");
+             }
         });
     }
 

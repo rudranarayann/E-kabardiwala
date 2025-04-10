@@ -66,7 +66,7 @@ const ScrapRequestSchema = new mongoose.Schema({
     },
     schedule:{
         type : Date,
-        default : 'Notify Soon',
+        default : '',
     },
     paymentStatus:{
         type : String,

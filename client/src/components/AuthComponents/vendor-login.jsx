@@ -4,6 +4,7 @@ import {vendorLoginForm} from '../../config/config'
 import { Link } from "react-router-dom";
 import { useDispatch } from "react-redux";
 import { vendorLogin } from "../../slice/user/user-auth-slice";
+import toast from "react-hot-toast";
 
 export default function VendorLogin(){
     const initialState = {
@@ -17,10 +18,10 @@ export default function VendorLogin(){
         event.preventDefault();
         dispatch(vendorLogin(formData)).then((data)=>{
             if(data?.payload?.success){
-                alert(data?.payload?.message);
                 setFormData(initialState);
+                toast.success(data?.payload?.message || "successfully logged in");
             }else{
-                alert(data?.payload?.message);
+                toast.error(data?.payload?.message || "Invalid credentials");
             }
         })
     }

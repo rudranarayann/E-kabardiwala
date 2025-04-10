@@ -4,6 +4,7 @@ import {vendorRegistrationForm} from '../../config/config'
 import { useState } from "react";
 import { useDispatch } from "react-redux";
 import { vendorRegistration } from "../../slice/user/user-auth-slice";
+import toast from "react-hot-toast";
 
 export default function VendorRegistration(){
     const initialState = {
@@ -21,10 +22,10 @@ export default function VendorRegistration(){
         dispatch(vendorRegistration(formData)).then((data)=>{
             // console.log(data.payload);
             if(data?.payload?.success){
-                alert(data?.payload?.message);
                 setFormData(initialState);
+                toast.success(data?.payload?.message || "Successfully registered");
             }else{
-                alert(data?.payload?.message);
+                toast.error(data?.payload?.message || "Please try again !");
             }
         })
     }

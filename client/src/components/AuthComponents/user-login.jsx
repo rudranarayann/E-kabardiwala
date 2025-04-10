@@ -19,10 +19,10 @@ export default function UserLogin(){
         event.preventDefault();
         dispatch(userLogin(formData)).then((data)=>{
             if(data?.payload?.success){
-                toast.success(data?.payload?.message || "Invalid credentials");
                 setFormData(intitialState);
+                toast.success(data?.payload?.message || "successfully logged in");
             }else{
-                toast.error(data?.payload?.message || "Invalid credentials");
+                toast.error(data?.payload?.message || "Invalid credentials !");
             }
         });
     }

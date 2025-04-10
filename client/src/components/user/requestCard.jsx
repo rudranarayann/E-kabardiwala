@@ -1,7 +1,7 @@
 import { useSelector } from "react-redux"
 
 
-export default function RequestCard({ singleRequest }) {
+export default function RequestCard({ singleRequest , handleSchedle}) {
 
     const { user } = useSelector(state => state.auth)
 
@@ -9,7 +9,7 @@ export default function RequestCard({ singleRequest }) {
     // console.log(singleRequest);
     return (
         <div className="border-2 rounded-md min-w-[10vw] flex flex-col shadow-lg p-5">
-            <h1 className="flex gap-2 justify-between w-full border-b-2 px-2 py-3 text-gray-500         font-semibold"><span className="bg-green-600 h-[20px] w-[20px] rounded-full"></span><span>  {user?.role === "vendor" ? singleRequest?.address?.name : singleRequest?.vendorname}</span> <span>{singleRequest?.scraptype}</span>
+            <h1 className="flex gap-2 justify-between w-full border-b-2 px-2 py-3 text-gray-400         font-semibold"><span className="bg-green-600 h-[20px] w-[20px] rounded-full"></span><span>  {user?.role === "vendor" ? singleRequest?.address?.name : singleRequest?.vendorname}</span> <span>{singleRequest?.scraptype}</span>
             </h1>
             <div className="px-4 py-3 flex flex-col gap-5 font-semibold text-gray-700">
                 <p className="flex justify-between items-center "><span className="bg-gray-200 rounded-md p-2 ">Quantity </span><span>{singleRequest?.quantity} KG</span></p>
@@ -33,7 +33,7 @@ export default function RequestCard({ singleRequest }) {
             }
             {
                 user?.role === "vendor" ?
-                    <button className="bg-blue-200 rounded-md py-1 border-blue-200 border-4 hover:border-cyan-300 ">Schedule Pickup</button>
+                    <button onClick={()=>{handleSchedle(singleRequest?._id)}} className="bg-blue-200 rounded-md py-1 border-blue-200 border-4 hover:border-cyan-300 ">Schedule Pickup</button>
                     : null
             }
 

@@ -24,10 +24,19 @@ export const fetchAllRequestVendor = createAsyncThunk(
     }
 );
 
+export const scheduleRequest = createAsyncThunk(
+    "api/scrap/schedule",
+    async({reqId,date})=>{
+        const response = await axios.put(`http://localhost:3500/api/scrap/request/schedule/${reqId}`,{date});
+        
+        return response.data;
+    }
+)
+
 export const fetchAllRequestUser = createAsyncThunk(
     "api/scrap/request/fetchAllUser",
     async({userid})=>{
-        const response = await axios.get(`http://localhost:3500/api/scrap/request/fetch/${userid}`);
+        const response = await axios.get(`http://localhost:3500/api/scrap/request/fetch/user/${userid}`);
         
         return response.data;
     }
@@ -61,6 +70,12 @@ const scrapRequest = createSlice({
         }).addCase(fetchAllRequestUser.rejected,(state)=>{
             state.isLoading = false,
             state.allRequestUser = []
+        }).addCase(scheduleRequest.pending,(state)=>{
+            state.isLoading = true;
+        }).addCase(scheduleRequest.fulfilled,(state)=>{
+            state.isLoading = false;
+        }).addCase(scheduleRequest.rejected,(state)=>{
+            state.isLoading = false
         })
     }
 })
