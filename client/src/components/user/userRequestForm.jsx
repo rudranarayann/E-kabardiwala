@@ -5,7 +5,7 @@ import { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import AddressCard from "./addressCard";
 import { fetchAllAddress } from "../../slice/address/address-slice";
-import { useLocation, useNavigate, useParams } from 'react-router-dom';
+import { Link, useLocation, useNavigate, useParams } from 'react-router-dom';
 import { scrapReq } from "../../slice/user/scrap-request-slice";
 import toast from "react-hot-toast";
 import LoadingPage from "../../pages/LoadingPage/loading-page";
@@ -28,8 +28,6 @@ export default function UserRequestForm() {
     const location = useLocation();
     const { state } = location;
     const navigate = useNavigate();
-    console.log(user.email, "user email"); // this one is the user email 
-
 
     function onSubmitHandleRequestForm(e) {
         e.preventDefault();
@@ -81,7 +79,7 @@ export default function UserRequestForm() {
                                 {
                                     addressList && addressList?.length > 0 ?
                                         addressList.map((singleItem, index) => <AddressCard key={index} singleAddress={singleItem} flag={false} isSelect={isSelectedId === singleItem._id} handleSelectAddress={handleSelectAddress} />)
-                                        : null
+                                        : <h1 className="text-gray-600 text-lg">Empty address list , <Link className="text-blue-600 hover:underline font-semibold" to={"/user/address"}>Click here</Link> to add address.</h1>
                                 }
                             </div>
                         </div>

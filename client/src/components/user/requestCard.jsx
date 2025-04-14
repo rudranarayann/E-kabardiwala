@@ -34,7 +34,7 @@ export default function RequestCard({ singleRequest, handleSchedle }) {
                 <p className="flex justify-between items-center gap-2 " ><span className="bg-gray-200 rounded-md p-2">Description  </span><span>{singleRequest?.description}</span></p>
                 <p className="flex justify-between items-center gap-2 " ><span className="bg-gray-200 rounded-md p-2">Payment Status  </span><span>{singleRequest?.paymentStatus}</span></p>
                 <p className="flex justify-between items-center gap-2 " ><span className="bg-gray-200 rounded-md p-2">Order Status</span><span>{singleRequest?.status}</span></p>
-                <p className="flex justify-between items-center gap-2 " ><span className="bg-gray-200 rounded-md p-2">Schedule Date</span><span>{singleRequest?.schedule}</span></p>
+                <p className="flex justify-between items-center gap-2 overflow-auto " ><span className="bg-gray-200 rounded-md p-2">Schedule Date</span><span>{singleRequest?.schedule}</span></p>
 
             </div>
             {
