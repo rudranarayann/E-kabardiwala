@@ -73,7 +73,7 @@ const loginUser = async(req,res)=>{
             email : checkUser.email,
             role : checkUser.role,
             username : checkUser.username,
-        },'CLIENT_SERVER_KEY' , {expiresIn : '60m'});
+        },'CLIENT_SERVER_KEY' , {expiresIn : '120m'});
 
         res.cookie('token',token,{httponly : true, secure : false, SameSite : 'none'}).json({
             success : true,

@@ -134,4 +134,38 @@ const fetchAllRequestsByUser = async(req,res)=>{
         })
     }
 }
-module.exports = {requestScrap,fetchAllRequestsForVendor,fetchAllRequestsByUser,updateSchedule}
+
+const cancleRequest = async(req,res)=>{
+    try{
+        const {status} = req.body;
+        const{reqId} = req.params;
+        if(!status){
+            return res.status(400).json({
+                success : false,
+                message : "Something missing !"
+            })
+        }
+
+        const requestItem = await ScrapRequest.findByIdAndUpdate(reqId,{status:status},{new:true});
+        if(!requestItem){
+            return res.status(401).json({
+                success : false,
+                message : "Please try again !",
+            })
+        }
+
+        return res.status(201).json({
+            success : true,
+            message : "Request has been cancelled..",
+            data : requestItem,
+        })
+        
+    }catch(e){
+        console.log(e);
+        res.status(500).json({
+            success : false,
+            message : 'Internal error'
+        })
+    }
+}
+module.exports = {requestScrap,fetchAllRequestsForVendor,fetchAllRequestsByUser,updateSchedule,cancleRequest}

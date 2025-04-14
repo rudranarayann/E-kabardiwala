@@ -1,4 +1,4 @@
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import CommonForm from "../../common/commonform";
 import { useState } from "react";
 import {userRegistrationForm} from '../../config/config'
@@ -13,15 +13,27 @@ export default function UserRegistration(){
         email : '',
         password : '',
     }
+    const emailRegex = /^[^\s@]+@[^\s@]+\.com$/
+    const passwordRegex = /^(?=.*[0-9])(?=.*[!@#$%^&*])[A-Za-z\d!@#$%^&*]{8,}$/;
 
     const [formData,setFormData] = useState(intitialState);
     const dispatch = useDispatch();
+    const navigate = useNavigate();
 
     function handlUserRegistration(event){
         event.preventDefault();
+        if(!emailRegex.test(formData?.email.trim())){
+            toast.error("Please enter a valid email address !");
+            return;
+        }
+        if(!passwordRegex.test(formData?.password.trim())){
+            toast.error("Password must be at least 8 characters and include a number and a special character.");
+            return ;
+        }
         dispatch(userRegistration(formData)).then((data)=>{
             if(data?.payload?.success){
                 setFormData(intitialState);
+                navigate("/auth/signin-user");
                 toast.success(data?.payload?.message || "Successfully registered");
             }else{
                 toast.error(data?.payload?.message || "Please try again !");

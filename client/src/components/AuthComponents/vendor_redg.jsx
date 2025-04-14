@@ -1,4 +1,4 @@
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import CommonForm from "../../common/commonform";
 import {vendorRegistrationForm} from '../../config/config'
 import { useState } from "react";
@@ -14,15 +14,30 @@ export default function VendorRegistration(){
         password : '',
     }
 
+    const emailRegex = /^[^\s@]+@[^\s@]+\.com$/
+    const passwordRegex = /^(?=.*[0-9])(?=.*[!@#$%^&*])[A-Za-z\d!@#$%^&*]{8,}$/;
+
     const dispatch = useDispatch();
     const[formData ,setFormData] = useState(initialState);
+    const navigate = useNavigate();
 
     function handleVendorRegistration(event){
         event.preventDefault();
+
+        if(!emailRegex.test(formData?.email.trim())){
+            toast.error("Please enter a valid email address !");
+            return;
+        }
+        if(!passwordRegex.test(formData?.password.trim())){
+            toast.error("Password must be at least 8 characters and include a number and a special character.");
+            return ;
+        }
+
         dispatch(vendorRegistration(formData)).then((data)=>{
             // console.log(data.payload);
             if(data?.payload?.success){
                 setFormData(initialState);
+                navigate("/auth/signin-vendor")
                 toast.success(data?.payload?.message || "Successfully registered");
             }else{
                 toast.error(data?.payload?.message || "Please try again !");

@@ -16,7 +16,7 @@ const registerVendor = async(req,res)=>{
         if(checkVendor){
             return res.json({
                 success : false,
-                message : 'User already exists',
+                message : 'Vendor already exists',
             })
         }
 
@@ -32,7 +32,7 @@ const registerVendor = async(req,res)=>{
 
         res.status(200).json({
             success : true,
-            message : 'User Successfully registerd'
+            message : 'Vendor Successfully registerd'
         })
     }catch(e){
         console.log(e);

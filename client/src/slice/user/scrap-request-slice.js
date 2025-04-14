@@ -32,6 +32,14 @@ export const scheduleRequest = createAsyncThunk(
         return response.data;
     }
 )
+export const cancelRequestById = createAsyncThunk(
+    "api/scrap/cancel",
+    async({reqId,status})=>{
+        const response = await axios.put(`http://localhost:3500/api/scrap/request/cancel/${reqId}`,{status});
+        
+        return response.data;
+    }
+)
 
 export const fetchAllRequestUser = createAsyncThunk(
     "api/scrap/request/fetchAllUser",
@@ -75,6 +83,12 @@ const scrapRequest = createSlice({
         }).addCase(scheduleRequest.fulfilled,(state)=>{
             state.isLoading = false;
         }).addCase(scheduleRequest.rejected,(state)=>{
+            state.isLoading = false
+        }).addCase(cancelRequestById.pending,(state)=>{
+            state.isLoading = true;
+        }).addCase(cancelRequestById.fulfilled,(state)=>{
+            state.isLoading = false;
+        }).addCase(cancelRequestById.rejected,(state)=>{
             state.isLoading = false
         })
     }
