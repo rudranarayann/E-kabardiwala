@@ -2,6 +2,7 @@ import { Castle, GalleryHorizontalEnd, IndianRupee } from "lucide-react";
 import { useDispatch, useSelector } from "react-redux";
 import { useNavigate } from "react-router-dom";
 import { deleteCity, fetchAllCity } from "../../slice/vendor/registration-slice-vendor";
+import toast from "react-hot-toast";
 
 export default function CityCard({singleCity}){
     const navigate = useNavigate();
@@ -11,8 +12,13 @@ export default function CityCard({singleCity}){
     function handleOnClickCityDelete(getCurrentCity){
         dispatch(deleteCity({vendorid : user?.id , city : getCurrentCity})).then((data)=>{
             // console.log(data.payload);
-            if(data?.payload?.success)
+            if(data?.payload?.success){
+                toast.success(data?.payload?.message || "Successfully deleted");
                 dispatch(fetchAllCity({vendorid : user?.id}));
+            }else{
+                toast.error(data?.payload?.message || "Successfully deleted");
+            }
+                
         });
     }
 

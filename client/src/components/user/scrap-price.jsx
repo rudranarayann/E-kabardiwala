@@ -42,24 +42,27 @@ export default function WastePrice() {
     }
     useEffect(() => {
         filterPrices();
-    }, [cityPrices, selectedCity]); 
+    }, [cityPrices, selectedCity]);
 
     return (
         <div className="flex flex-col">
             <h1 className="py-3 px-4 border-b-2 text-3xl font-semibold">Waste Prices</h1>
             <div className="flex">
                 <SidebarCity handleClickOnCity={handleClickOnCity} />
-                <div className="flex flex-col ">
-                    <h1 className="text-3xl font-bold px-4 py-2">{selectedCity}</h1>
-                    <div className="p-5 flex flex-col md:flex-row gap-4">
-                        {
-                            isLoading ? <LoadingPage/> : 
-                                prices && prices.length > 0 ?
-                                    prices.map((singleItem, index) => <PriceCard key={index} singleItem={singleItem} />)
-                                    : <h1 className="text-3xl font-semibold">Oops.....! No Vendors available in this city ! </h1>
-                        }
-                    </div>
-                </div>
+                {
+                    isLoading ? <LoadingPage /> :
+
+                        <div className="flex flex-col w-full">
+                            <h1 className="text-3xl font-bold px-4 py-2">{selectedCity}</h1>
+                            <div className="p-5 flex flex-col md:flex-row gap-4 ">
+                                {
+                                    prices && prices.length > 0 ?
+                                        prices.map((singleItem, index) => <PriceCard key={index} singleItem={singleItem} />)
+                                        : <h1 className="text-3xl font-semibold">Oops.....! No Vendors available for this city ! </h1>
+                                }
+                            </div>
+                        </div>
+                }
             </div>
         </div>
     )

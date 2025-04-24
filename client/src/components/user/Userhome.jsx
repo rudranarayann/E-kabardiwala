@@ -2,6 +2,7 @@ import bg from '../../assets/userLayout-home-bg.jpg';
 import { useNavigate } from 'react-router-dom';
 import ContactComponent from '../contactComponent';
 import ThreeStepsToScrapCollect from './ThreeStepsScrap';
+import AboutLayout from '../../pages/About/aboutLayout';
 export default function UserHome() {
     const navigate = useNavigate();
     return (
@@ -19,6 +20,7 @@ export default function UserHome() {
 
              {/*Steps to request for a selling scrap */}
             <ThreeStepsToScrapCollect/>
+            <AboutLayout/>
             <ContactComponent />
         </div>
     )

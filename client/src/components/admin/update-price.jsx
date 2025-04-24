@@ -4,6 +4,7 @@ import {updatePriceControl} from '../../config/config';
 import CommonForm from "../../common/commonform";
 import { useState } from "react";
 import { fetchAllCity, updatePrice } from "../../slice/vendor/registration-slice-vendor";
+import toast from "react-hot-toast";
 
 export default function UpdatePrice(){
 
@@ -23,6 +24,11 @@ export default function UpdatePrice(){
     function handleUpdatePrice(e){
         e.preventDefault();
         // console.log(formData);
+        const formValid = Object.keys(formData).every((item)=> formData[item] !== '')
+        if(!formValid){
+            toast.error("Fill all fields");
+            return ;
+        }
         dispatch(updatePrice({
             vendorid : user.id,
             city : city,
@@ -31,9 +37,10 @@ export default function UpdatePrice(){
             if(data?.payload?.success){
                 dispatch(fetchAllCity({vendorid : user.id}));
                 setFormData(initialState);
-                alert('Price Update successfully');
+                toast.success(data?.payload?.message || "Successfully price updated..");
                 navigate('/admin/all-city');
-
+            }else{
+                toast.error(data?.payload?.message || "Please try again");
             }
         })
     }

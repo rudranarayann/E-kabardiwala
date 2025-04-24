@@ -53,7 +53,7 @@ export default function AllOrders() {
                 All Requests
             </h1>
             {
-                !isLoading ? <div className="flex flex-col md:flex-row gap-2 p-9">
+                !isLoading ? <div className="flex flex-col flex-wrap md:flex-row gap-2 p-9 items-center justify-center ">
                 {
                     allRequestVendor && allRequestVendor.length > 0 ?
                         allRequestVendor.map((singleRequest, index) => <RequestCard singleRequest={singleRequest} handleSchedle={handleSchedle} key={index} />)

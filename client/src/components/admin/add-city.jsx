@@ -23,6 +23,11 @@ export default function AddCity(){
 
     function handleAddCity(e){
         e.preventDefault();
+        const formValid = Object.keys(formData).every((item)=> formData[item] !== '')
+        if(!formValid){
+            toast.error("Fill all fields");
+            return ;
+        }
         dispatch(addCitySlice({...formData,vendorid: user?.id})).then((data)=>{
             // console.log(data.payload);
             if(data?.payload?.success){

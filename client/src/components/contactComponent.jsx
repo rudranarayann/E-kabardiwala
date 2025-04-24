@@ -4,7 +4,7 @@ import { contactForm } from "../config/config";
 import { useState } from "react";
 import { useDispatch} from "react-redux";
 import { saveContact } from "../slice/contact/contact-slice";
-
+import toast from "react-hot-toast";
 
 export default function ContactComponent() {
     const initialState = {
@@ -19,6 +19,11 @@ export default function ContactComponent() {
 
     function handleContactOnSubmit(e){
         e.preventDefault();
+        const formValid = Object.keys(formData).every((item)=> formData[item] !== '')
+        if(!formValid){
+            toast.error("Fill all fields");
+            return ;
+        }
         dispatch(saveContact({...formData})).then((data)=>{
             if(data?.payload?.success){
                 alert(data?.payload?.message);

@@ -26,6 +26,11 @@ export default function Address(){
 
     function handleOnSubmitAddress (e) {
         e.preventDefault();
+        const formValid = Object.keys(formData).every((item)=> formData[item] !== '')
+        if(!formValid){
+            toast.error("Fill all fields");
+            return ;
+        }
         if(isEdited !== null){
             dispatch(editAddress({formData,userid : user?.id,addressid : isEdited })).then((data)=>{
                 if(data?.payload?.success){

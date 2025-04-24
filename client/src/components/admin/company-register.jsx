@@ -22,8 +22,16 @@ export default function VendorCompanyRegistration(){
     }
     const [formData,setFormData]  = useState(initialValue);
 
+
+
     function handleVendorRedgSubmit(e){
         e.preventDefault();
+
+        const formValid = Object.keys(formData).every((item)=> formData[item] !== '')
+        if(!formValid){
+            toast.error("Fill all fields");
+            return ;
+        }
         dispatch(cmpRegistrationVendor({...formData,vendorid : user.id})).then((data)=>{
             if(data?.payload?.success){
                 console.log(data.payload);

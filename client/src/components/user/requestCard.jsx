@@ -18,7 +18,7 @@ export default function RequestCard({ singleRequest, handleSchedle }) {
                 user?.role === 'vendor' ? dispatch(fetchAllRequestVendor({ vendorid: user.id })) :dispatch(fetchAllRequestUser({ userid: user.id }))
                 
             } else {
-                toast.success(data?.payload?.message || "Please try again");
+                toast.error(data?.payload?.message || "Please try again");
                 setShowModal(false);
             }
         })
@@ -34,7 +34,7 @@ export default function RequestCard({ singleRequest, handleSchedle }) {
                 <p className="flex justify-between items-center gap-2 " ><span className="bg-gray-200 rounded-md p-2">Description  </span><span>{singleRequest?.description}</span></p>
                 <p className="flex justify-between items-center gap-2 " ><span className="bg-gray-200 rounded-md p-2">Payment Status  </span><span>{singleRequest?.paymentStatus}</span></p>
                 <p className="flex justify-between items-center gap-2 " ><span className="bg-gray-200 rounded-md p-2">Order Status</span><span>{singleRequest?.status}</span></p>
-                <p className="flex justify-between items-center gap-2 overflow-auto " ><span className="bg-gray-200 rounded-md p-2">Schedule Date</span><span>{singleRequest?.schedule}</span></p>
+                <p className="flex justify-between items-center gap-2 overflow-auto " ><span className="bg-gray-200 rounded-md p-2">Schedule Date</span><span>{singleRequest?.schedule  === null ? "Soon to be scheduled" : singleRequest?.schedule}</span></p>
 
             </div>
             {
@@ -50,7 +50,7 @@ export default function RequestCard({ singleRequest, handleSchedle }) {
             }
             {
                 user?.role === "vendor" ?
-                    <button onClick={() => { handleSchedle(singleRequest?._id) }} className="bg-blue-200 rounded-md py-1 border-blue-200 border-4 hover:border-cyan-300 ">Schedule Pickup</button>
+                    <button onClick={() => { handleSchedle(singleRequest?._id) }} className="bg-blue-200 rounded-md py-1 border-blue-200 border-4 hover:border-cyan-300 ">{singleRequest?.schedule !== null? "Re-schedule Pickup" :"Schedule Pickup" }</button>
                     : null
             }
             <button onClick={() => setShowModal(true)} className={`bg-blue-200 rounded-md py-1 mt-2 text-red-700 border-blue-200 border-2 hover:text-red-400 ${singleRequest?.status === "cancelled" ? 'hover:cursor-not-allowed' : null} `}>Cancel</button>
