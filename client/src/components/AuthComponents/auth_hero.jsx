@@ -1,6 +1,8 @@
 import {MoveRight} from 'lucide-react'
 import { useNavigate } from 'react-router-dom'
 import logo from '../../assets/online-kawadiwala_logo.png'
+import AboutLayout from '../../pages/About/aboutLayout';
+import ContactComponent from '../contactComponent';
 
 export default function AuthHeroComponent(){
     const navigate = useNavigate();
@@ -14,6 +16,7 @@ export default function AuthHeroComponent(){
                 <p className='flex gap-4 text-gray-200  text-2xl justify-center items-center pl-7'>User <span className='text-black bg-gray-300 rounded-full px-7 py-4 hover:bg-gray-400 hover:cursor-pointer' onClick={()=>navigate('/auth/signin-user')}><MoveRight /></span></p>
                 <p className='flex gap-4 text-2xl justify-center items-center text-gray-200'>Vendor <span className='text-black bg-gray-300 rounded-full px-7 py-4 hover:bg-gray-400 hover:cursor-pointer' onClick={()=>navigate('/auth/signin-vendor')}><MoveRight  /></span></p>
             </div>
+           
         </div>
     )
 }

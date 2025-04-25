@@ -4,6 +4,8 @@ import { useDispatch, useSelector } from 'react-redux'
 import { useEffect } from "react";
 import { checkAuth } from "../../slice/user/user-auth-slice";
 import ContactComponent from "../../components/contactComponent";
+import AboutLayout from "../About/aboutLayout";
+import ThreeStepsToScrapCollect from "../../components/user/ThreeStepsScrap";
 
 export default function HeroLayout() {
   
@@ -43,6 +45,8 @@ export default function HeroLayout() {
           <div className="absolute inset-0 bg-black bg-opacity-50"></div>
           <HeroContent />
         </div>
+        <ThreeStepsToScrapCollect/>
+        <AboutLayout/>
         <ContactComponent/>
       
       </div>

@@ -23,7 +23,7 @@ export default function AllPickups(){
                 Placed Requests
             </h1>
             {
-                !isLoading ?<div className="flex flex-col md:flex-row gap-2 p-9">
+                !isLoading ?<div className="flex flex-col md:flex-row flex-wrap justify-center gap-2 p-9">
                 {
                     allRequestUser && allRequestUser.length > 0 ? 
                         allRequestUser.map((singleRequest,index)=><RequestCard singleRequest={singleRequest}key={index}/>)

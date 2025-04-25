@@ -31,11 +31,10 @@ export default function UserRequestForm() {
 
     function onSubmitHandleRequestForm(e) {
         e.preventDefault();
-        const hasEmptyField = Object.values(formData).some(value => value === "");
-
-        if (hasEmptyField) {
-            toast.error("Fill your form first");
-            return;
+        const formValid = Object.keys(formData).every((item)=> formData[item] !== '')
+        if(!formValid){
+            toast.error("Fill all fields");
+            return ;
         }
         if (!selectedAddress) {
             toast.error("Please Select a address !");
