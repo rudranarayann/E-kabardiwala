@@ -1,4 +1,4 @@
-const mongoose = require('mongoose');
+    const mongoose = require('mongoose');
 
 const userSchema = new mongoose.Schema({
     username : {
@@ -18,6 +18,12 @@ const userSchema = new mongoose.Schema({
     role : {
         type : String ,
         default : 'user',
+    },
+    resetToken: {
+        type : String,
+    },
+    resetTokenExpire:{
+        type : Date
     }
 })
 

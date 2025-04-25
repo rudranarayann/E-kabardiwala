@@ -24,6 +24,13 @@ export default function VendorCompanyRegistration(){
 
     function handleVendorRedgSubmit(e){
         e.preventDefault();
+        const hasEmptyField = Object.values(formData).some(value => value.trim() === "");
+
+        if (hasEmptyField) {
+            toast.error("Fill your form first");
+            return;
+        }
+
         dispatch(cmpRegistrationVendor({...formData,vendorid : user.id})).then((data)=>{
             if(data?.payload?.success){
                 console.log(data.payload);

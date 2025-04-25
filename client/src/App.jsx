@@ -32,6 +32,8 @@ import AllPickups from "./components/user/allPickUps";
 import AllOrders from "./components/admin/all-orders";
 import Sheduling from "./components/admin/sheduling";
 import { Toaster } from "react-hot-toast";
+import ForgotPassUser from "./components/AuthComponents/forgotpassword-user";
+import ResetPassword from "./components/AuthComponents/resetPassword";
 
 function App() {
   const dispatch = useDispatch();
@@ -63,6 +65,8 @@ function App() {
           <Route path="signin-vendor" element={<VendorLogin />} />
           <Route path="signup-user" element={<UserRegistration />} />
           <Route path="signup-vendor" element={<VendorRegistration />} />
+          <Route path="forgotpassword-user" element={<ForgotPassUser />} />
+          <Route path="reset-password/:token" element={<ResetPassword />} />
         </Route>
         
         <Route path="/admin" element={

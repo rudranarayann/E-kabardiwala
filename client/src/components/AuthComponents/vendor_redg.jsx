@@ -45,13 +45,16 @@ export default function VendorRegistration(){
         })
     }
     return (
-        <div className="flex flex-col justify-center items-center gap-20 py-6 px-6 md:px-0">
+        <div className="flex flex-col justify-center items-center gap-10 py-6 px-6 md:px-0">
             <div>
                 <h1 className=" text-4xl font-extrabold ">Registration For Vendor </h1>
                 <p className="text-xl pt-5">Already have an account, <Link to={'/auth/signin-vendor'} className="text-blue-500 underline ">SignIn</Link></p>
             </div>
             <div>
                 <CommonForm formControls={vendorRegistrationForm} formData={formData} setFormData={setFormData} buttonText={'Sign Up'} onSubmit={handleVendorRegistration}/>
+            </div>
+            <div className="w-[30%] flex justify-end">
+                <Link to={"/auth/forgotpassword-user"} className="text-decoration-line:underline text-blue-500 text-xl font-semibold hover:cursor-pointer hover:text-blue-700 underline">Forgot Password?</Link>
             </div>
         </div>
     )

@@ -31,6 +31,12 @@ export default function UserRequestForm() {
 
     function onSubmitHandleRequestForm(e) {
         e.preventDefault();
+        const hasEmptyField = Object.values(formData).some(value => value === "");
+
+        if (hasEmptyField) {
+            toast.error("Fill your form first");
+            return;
+        }
         if (!selectedAddress) {
             toast.error("Please Select a address !");
         } else {

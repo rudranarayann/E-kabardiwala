@@ -23,6 +23,12 @@ const vendorSchema = new mongoose.Schema({
     role : {
         type : String ,
         default : 'vendor',
+    },
+    resetToken: {
+        type : String,
+    },
+    resetTokenExpire:{
+        type : Date
     }
 })
 

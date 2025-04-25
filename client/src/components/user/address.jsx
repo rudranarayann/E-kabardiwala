@@ -26,6 +26,13 @@ export default function Address(){
 
     function handleOnSubmitAddress (e) {
         e.preventDefault();
+
+        const hasEmptyField = Object.values(formData).some(value => value.trim() === "");
+
+        if (hasEmptyField) {
+            toast.error("Fill your form first");
+            return;
+        }
         if(isEdited !== null){
             dispatch(editAddress({formData,userid : user?.id,addressid : isEdited })).then((data)=>{
                 if(data?.payload?.success){

@@ -61,7 +61,7 @@ export default function ScrapRequest(){
             <h1 className="text-3xl font-semibold text-gray-600 px-5 py-5 border-b-2">Scrap Request </h1>
             <div className="flex flex-col mt-5 items-center">
                 <h1 className="text-4xl font-semibold text-gray-600 flex justify-center">Select Your City</h1>
-                <div className='flex flex-col md:flex-row gap-4 md:max-w-[70vw] overflow-auto mt-5 p-10 max-h-[90vh]'>
+                <div className='grid grid-cols-1 md:grid-cols-4 gap-4 md:max-w-[70vw] overflow-auto mt-5 p-10 max-h-[90vh] '>
                     {
                         odishaCities && odishaCities.length > 0 ?
                             odishaCities.map((singleCity,index)=>(
@@ -91,4 +91,4 @@ export default function ScrapRequest(){
             
         </div>
     )
-}
+} 

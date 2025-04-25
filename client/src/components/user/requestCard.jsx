@@ -50,7 +50,7 @@ export default function RequestCard({ singleRequest, handleSchedle }) {
             }
             {
                 user?.role === "vendor" ?
-                    <button onClick={() => { handleSchedle(singleRequest?._id) }} className="bg-blue-200 rounded-md py-1 border-blue-200 border-4 hover:border-cyan-300 ">Schedule Pickup</button>
+                    <button onClick={() => { handleSchedle(singleRequest?._id) }} className="bg-blue-200 rounded-md py-1 border-blue-200 border-4 hover:border-cyan-300 ">{singleRequest?.schedule !==''?'Re-schedule Pickup':'Schedule Pickup'}</button>
                     : null
             }
             <button onClick={() => setShowModal(true)} className={`bg-blue-200 rounded-md py-1 mt-2 text-red-700 border-blue-200 border-2 hover:text-red-400 ${singleRequest?.status === "cancelled" ? 'hover:cursor-not-allowed' : null} `}>Cancel</button>

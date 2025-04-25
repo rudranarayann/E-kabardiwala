@@ -1,6 +1,16 @@
 const VendorAuth = require('../../model/Vendor/Vendor');
 const bcrypt = require('bcryptjs');
 const jwt = require('jsonwebtoken');
+const crypto = require('crypto');
+const nodemailer = require('nodemailer');
+
+const transporter = nodemailer.createTransport({
+    service: 'Gmail',
+    auth: {
+        user: 'suchitrakumar098@gmail.com',
+        pass: 'bxbu nfyo ixxg rowz',
+    },
+});
 
 const registerVendor = async(req,res)=>{
     const{username,email,password,companyname} = req.body;
@@ -105,4 +115,82 @@ const logoutVendor = async(req,res)=>{
         message : 'Successfully logged out',
     })
 }
-module.exports = {loginVendor,registerVendor,logoutVendor};
+const forgotPassword = async (req, res) => {
+    try {
+        const { email } = req.body;
+        const findByEmail = await VendorAuth.findOne({ email });
+
+        if (!findByEmail) {
+            return res.status(400).json({
+                success: false,
+                message: "Vendor not found !"
+            })
+        }
+
+        const token = crypto.randomBytes(32).toString('hex');
+        findByEmail.resetToken = token;
+        findByEmail.resetTokenExpire = Date.now() + 3600000;
+        await findByEmail.save();
+
+        const resetLink = `http://localhost:5173/auth/reset-password/${token}`;
+
+        await transporter.sendMail({
+            to: email,
+            subject: 'Reset your password',
+            html: `<p>Reset your password using the link:</p><a href="${resetLink}">${resetLink}</a>`,
+        });
+
+        res.status(200).json({
+            success: true,
+            message: 'Reset link sent to your email',
+        });
+
+    } catch (e) {
+        console.log(e);
+        return res.status(500).json({
+            success: false,
+            message: "Some internal error"
+        })
+    }
+
+}
+
+const resetPassword = async (req, res) => {
+    try {
+        const { password } = req.body;
+        const token = req.params.token;
+
+        const account = await VendorAuth.findOne({
+            resetToken: token,
+            resetTokenExpire: { $gt: Date.now() }
+        })
+
+        if (!account) {
+            return res.status(400).json({
+                success: false,
+                message: 'Invalid or expired token'
+            });
+        }
+
+        const hashedPassword = await bcrypt.hash(password, 10);
+        account.password = hashedPassword;
+        account.resetToken = undefined;
+        account.resetTokenExpire = undefined;
+
+        await account.save();
+
+        res.status(200).json({
+            success: true,
+            message: 'Password has been reseted...',
+        });
+
+    } catch (e) {
+        console.log(e);
+        return res.status(500).json({
+            success: false,
+            message: "Some internal error"
+        })
+    }
+}
+
+module.exports = {loginVendor,registerVendor,logoutVendor,forgotPassword,resetPassword};
