@@ -1,21 +1,47 @@
 import { useState } from "react";
 import { useDispatch } from "react-redux";
-import { forgotPasswordUser } from "../../slice/user/user-auth-slice";
+import { forgotPasswordUser, forgotPasswordVendor } from "../../slice/user/user-auth-slice";
 import toast from "react-hot-toast";
-import { Link } from "react-router-dom";
+import { Link, useLocation, useNavigate } from "react-router-dom";
 
 export default function ForgotPassUser(){
     const[email,setEmail] = useState('');
+    const location  = useLocation();
+    const {role} = location.state || {};
     const dispatch = useDispatch();
+    const navigate = useNavigate();
+
+    const emailRegex = /^[^\s@]+@[^\s@]+\.com$/;
+
     function handleOnSubmitForgotPass(e){
         e.preventDefault();
+
+        if(!emailRegex.test(email.trim())){
+          toast.error("Please enter a valid email address !");
+          return;
+        }
+        
+        role == "consumer" ?
         dispatch(forgotPasswordUser({email})).then((data)=>{
             if(data?.payload?.success){
                 toast.success(data?.payload?.message || "Go to link and reset your password");
+                navigate('/auth/signin-user');
             }else{
                 toast.error(data?.payload?.message || "Invalid credentials !");
             }
-        });
+        })
+        : dispatch(forgotPasswordVendor({email})).then((data)=>{
+          if(data?.payload?.success){
+              toast.success(data?.payload?.message || "Go to link and reset your password");
+              navigate('/auth/signin-vendor');
+          }else{
+              toast.error(data?.payload?.message || "Invalid credentials !");
+          }
+
+          
+      })
+
+
     }
     return (
         <div className="h-full w-full flex justify-center items-center bg-gray-100">

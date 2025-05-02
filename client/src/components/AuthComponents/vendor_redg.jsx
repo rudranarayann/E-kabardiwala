@@ -14,7 +14,7 @@ export default function VendorRegistration(){
         password : '',
     }
 
-    const emailRegex = /^[^\s@]+@[^\s@]+\.com$/
+    const emailRegex = /^[^\s@]+@[^\s@]+\.com$/;
     const passwordRegex = /^(?=.*[0-9])(?=.*[!@#$%^&*])[A-Za-z\d!@#$%^&*]{8,}$/;
 
     const dispatch = useDispatch();
@@ -54,7 +54,7 @@ export default function VendorRegistration(){
                 <CommonForm formControls={vendorRegistrationForm} formData={formData} setFormData={setFormData} buttonText={'Sign Up'} onSubmit={handleVendorRegistration}/>
             </div>
             <div className="w-[30%] flex justify-end">
-                <Link to={"/auth/forgotpassword-user"} className="text-decoration-line:underline text-blue-500 text-xl font-semibold hover:cursor-pointer hover:text-blue-700 underline">Forgot Password?</Link>
+                <Link to={"/auth/forgotpassword-user"} state={{role:'consumer'}} className="text-decoration-line:underline text-blue-500 text-xl font-semibold hover:cursor-pointer hover:text-blue-700 underline">Forgot Password?</Link>
             </div>
         </div>
     )

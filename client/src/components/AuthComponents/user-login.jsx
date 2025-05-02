@@ -41,7 +41,7 @@ export default function UserLogin(){
                 <CommonForm formControls={userLoginForm} formData={formData} setFormData={setFormData} buttonText={'Sign In'} onSubmit={handleOnUserLogin}/>
             </div>
             <div className="w-[30%] flex justify-end">
-                <Link to={"/auth/forgotpassword-user"} className="text-decoration-line:underline text-blue-500 text-xl font-semibold hover:cursor-pointer hover:text-blue-700 underline">Forgot Password?</Link>
+                <Link to={"/auth/forgotpassword-user"} state={{role:'consumer'}} className="text-decoration-line:underline text-blue-500 text-xl font-semibold hover:cursor-pointer hover:text-blue-700 underline">Forgot Password?</Link>
             </div>
         </div>
     )

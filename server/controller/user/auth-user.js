@@ -7,8 +7,8 @@ const nodemailer = require('nodemailer');
 const transporter = nodemailer.createTransport({
     service: 'Gmail',
     auth: {
-        user: 'suchitrakumar098@gmail.com',
-        pass: 'bxbu nfyo ixxg rowz',
+        user: 'contact.scrapcollector@gmail.com',
+        pass: 'dqqe ydql abhl neqx',
     },
 });
 
@@ -121,8 +121,9 @@ const forgotPassword = async (req, res) => {
         findByEmail.resetToken = token;
         findByEmail.resetTokenExpire = Date.now() + 3600000;
         await findByEmail.save();
+        const role = "consumer";
 
-        const resetLink = `http://localhost:5173/auth/reset-password/${token}`;
+        const resetLink = `http://localhost:5173/auth/reset-password/${role}/${token}`;
 
         await transporter.sendMail({
             to: email,

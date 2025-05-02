@@ -34,6 +34,7 @@ import Sheduling from "./components/admin/sheduling";
 import { Toaster } from "react-hot-toast";
 import ForgotPassUser from "./components/AuthComponents/forgotpassword-user";
 import ResetPassword from "./components/AuthComponents/resetPassword";
+import PaymentUser from "./components/user/payment";
 
 function App() {
   const dispatch = useDispatch();
@@ -66,7 +67,7 @@ function App() {
           <Route path="signup-user" element={<UserRegistration />} />
           <Route path="signup-vendor" element={<VendorRegistration />} />
           <Route path="forgotpassword-user" element={<ForgotPassUser />} />
-          <Route path="reset-password/:token" element={<ResetPassword />} />
+          <Route path="reset-password/:role/:token" element={<ResetPassword />} />
         </Route>
         
         <Route path="/admin" element={
@@ -92,6 +93,7 @@ function App() {
           <Route path="address" element={<Address/>}/>
           <Route path="waste-price" element={<WastePrice/>}/>
           <Route path="allpickups" element={<AllPickups/>}/>
+          <Route path="payment" element={<PaymentUser/>}/>
           <Route path="request/:city/:vendorid/:userid" element={<UserRequestForm/>}/>
         </Route>
 
