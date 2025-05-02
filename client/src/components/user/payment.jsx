@@ -1,6 +1,6 @@
 import React from 'react';
 
-export default function UserScrapEarnings(){
+export default function PaymentUser(){
 
     const transactions = [
         { id: 1, vendor: 'EcoScrap Ltd', amount: 150.0, status: 'success', date: '2025-04-30' },
