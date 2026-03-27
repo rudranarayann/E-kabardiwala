@@ -1,5 +1,5 @@
 import { createAsyncThunk, createSlice } from "@reduxjs/toolkit"
-import axios from "axios"
+import { api } from "../../service/api";
 
 const initialState  = {
     isLoading : false,
@@ -9,7 +9,7 @@ const initialState  = {
 export const addAdderss = createAsyncThunk(
     '/user/addAddress',
     async(formData)=>{
-        const response = await axios.post('http://localhost:3500/api/user/address/add-address',formData);
+        const response = await api.post('/user/address/add-address',formData);
 
         return response.data;
     }
@@ -18,7 +18,7 @@ export const addAdderss = createAsyncThunk(
 export const editAddress = createAsyncThunk(
     'user/editAddress',
     async({userid,addressid,formData}) =>{
-        const response = await axios.put(`http://localhost:3500/api/user/address/edit-address/${userid}/${addressid}`,formData);
+        const response = await api.put(`/user/address/edit-address/${userid}/${addressid}`,formData);
 
         return response.data;
     }
@@ -27,7 +27,7 @@ export const editAddress = createAsyncThunk(
 export const fetchAllAddress = createAsyncThunk(
     'user/fetchAllAddress',
     async({userid})=>{
-        const response = await axios.get(`http://localhost:3500/api/user/address/get-address/${userid}`);
+        const response = await api.get(`/user/address/get-address/${userid}`);
 
         return response.data;
     }
@@ -36,7 +36,7 @@ export const fetchAllAddress = createAsyncThunk(
 export const deleteAddress = createAsyncThunk(
     'user/deleteAddress',
     async({userid,addressid})=>{
-        const response = await axios.delete(`http://localhost:3500/api/user/address/delete-address/${userid}/${addressid}`);
+        const response = await api.delete(`/user/address/delete-address/${userid}/${addressid}`);
 
         return response.data;
     }

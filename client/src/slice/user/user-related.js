@@ -1,5 +1,6 @@
 import { createAsyncThunk, createSlice } from "@reduxjs/toolkit";
-import axios from "axios";
+import { api } from "../../service/api";
+
 const initialState = {
     isLoading : false,
     cityPrices : []
@@ -8,7 +9,7 @@ const initialState = {
 export const fetchCityPrice = createAsyncThunk(
     'user/city/fetchPrice',
     async({city})=>{
-        const response = await axios.get(`http://localhost:3500/api/prices/${city}`);
+        const response = await api.get(`/prices/${city}`);
         return response.data;
     }
 )

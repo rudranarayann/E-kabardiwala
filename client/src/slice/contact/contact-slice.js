@@ -1,5 +1,5 @@
 import { createAsyncThunk, createSlice } from "@reduxjs/toolkit"
-import axios from "axios"
+import { api } from "../../service/api";
 
 const initialState  = {
     isLoading : false,
@@ -9,7 +9,7 @@ const initialState  = {
 export const saveContact = createAsyncThunk(
     'api/saveSontact',
     async(formData)=>{
-        const response = await axios.post('http://localhost:3500/api/contact/save-contact',formData);
+        const response = await api.post('/contact/save-contact',formData);
 
         return response.data;
     }
@@ -18,7 +18,7 @@ export const saveContact = createAsyncThunk(
 export const getContact = createAsyncThunk(
     'api/getContact',
     async(formData)=>{
-        const response = await axios.post('http://localhost:3500/api/contact/get-contacts',formData);
+        const response = await api.post('/contact/get-contacts',formData);
 
         return response.data;
     }

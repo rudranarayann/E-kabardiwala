@@ -1,22 +1,25 @@
-const express = require('express');
-const mongoose  = require('mongoose');
-const cors = require('cors');
-const cookieParser = require('cookie-parser');
-const authUser = require('../server/routers/user/user-router')
-const authVendor = require('../server/routers/vendor/vendor-router')
-const contact = require('../server/routers/contact/contact-router')
-const address = require('../server/routers/address/address-router')
-const user = require('../server/routers/user/user-realated-route')
-const scrapRequest = require('../server/routers/user/scrap-request-route')
+import dotenv from 'dotenv';
+dotenv.config();
+import express from 'express';
+import mongoose from 'mongoose';
+import cors from 'cors';
+import cookieParser from 'cookie-parser';
+
+import authUser from '../server/routers/user/user-router.js';
+import authVendor from '../server/routers/vendor/vendor-router.js';
+import contact from '../server/routers/contact/contact-router.js';
+import address from '../server/routers/address/address-router.js';
+import user from '../server/routers/user/user-realated-route.js';
+import scrapRequest from '../server/routers/user/scrap-request-route.js';
 
 
 //Connection for mongo ,id : suchitrakumar098@gmail.com
 try{
-    mongoose.connect('mongodb+srv://suchitrakumar098:Dalei123@e-kawadiwala.cqjs6.mongodb.net/').then(()=>
+    mongoose.connect('mongodb://daleisuchitra22:Dalei%40123@mernstack-youtube-shard-00-00.vjq7s.mongodb.net:27017,mernstack-youtube-shard-00-01.vjq7s.mongodb.net:27017,mernstack-youtube-shard-00-02.vjq7s.mongodb.net:27017/kawardiwala?ssl=true&replicaSet=atlas-wsy7oq-shard-0&authSource=admin&appName=mernStack-youtube').then(()=>
     {
         console.log("mongo connect successfully");
-    }).catch(()=>{
-        console.log("some error occured while connect to Mongo");
+    }).catch((e)=>{
+        console.log(e);
     })
 }catch(e){
     console.log(e)
@@ -27,9 +30,10 @@ try{
 const server = express();
 
 //require middleware 
+console.log("Frontend URL : ",process.env.FRONTED_URL);
 server.use(
     cors({
-        origin : "http://localhost:5173",
+        origin : process.env.FRONTED_URL,
         methods : ['GET','POST','DELETE','PUT'],
         allowedHeaders :[
             'content-Type',
@@ -50,8 +54,7 @@ server.use('/api/contact',contact);
 server.use('/api/prices',user);
 server.use('/api/scrap',scrapRequest);
 
-
-const PORT = 3500;
+const PORT = process.env.PORT || 3500 ;
 server.listen(PORT,()=>{
     console.log(`Server now running on Port ${PORT}`);
 })

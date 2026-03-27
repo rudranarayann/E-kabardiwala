@@ -1,5 +1,6 @@
 import { createAsyncThunk, createSlice } from "@reduxjs/toolkit";
 import axios from 'axios';
+import { api } from "../../service/api";
 
 
 const initialState = {
@@ -10,7 +11,7 @@ const initialState = {
 
 export const userLogin = createAsyncThunk('auth/user-login',
     async (formData) => {
-        const response = await axios.post('http://localhost:3500/api/auth/user/user-login', formData,
+        const response = await api.post('/auth/user/user-login', formData,
             {
                 withCredentials: true,
             }
@@ -21,7 +22,7 @@ export const userLogin = createAsyncThunk('auth/user-login',
 
 export const userRegistration = createAsyncThunk('auth/user-signup',
     async (formData) => {
-        const response = await axios.post('http://localhost:3500/api/auth/user/user-register', formData,
+        const response = await api.post('/auth/user/user-register', formData,
             {
                 withCredentials: true,
             }
@@ -33,7 +34,7 @@ export const userRegistration = createAsyncThunk('auth/user-signup',
 
 export const userLogout = createAsyncThunk('auth/user-logout',
     async () => {
-        const response = await axios.post('http://localhost:3500/api/auth/user/user-logout', {},
+        const response = await api.post('/auth/user/user-logout', {},
             {
                 withCredentials: true
             }
@@ -45,7 +46,7 @@ export const userLogout = createAsyncThunk('auth/user-logout',
 
 export const vendorLogin = createAsyncThunk('auth/vendor-login',
     async (formData) => {
-        const response = await axios.post('http://localhost:3500/api/auth/vendor/vendor-login', formData,
+        const response = await api.post('/auth/vendor/vendor-login', formData,
             {
                 withCredentials: true,
             }
@@ -57,7 +58,7 @@ export const vendorLogin = createAsyncThunk('auth/vendor-login',
 
 export const vendorRegistration = createAsyncThunk('auth/vendor-signup',
     async (formData) => {
-        const response = await axios.post('http://localhost:3500/api/auth/vendor/vendor-register', formData,
+        const response = await api.post('/auth/vendor/vendor-register', formData,
             {
                 withCredentials: true,
             }
@@ -69,7 +70,7 @@ export const vendorRegistration = createAsyncThunk('auth/vendor-signup',
 
 export const vendorLogout = createAsyncThunk('auth/vendor-logout',
     async () => {
-        const response = await axios.post('http://localhost:3500/api/auth/vendor/vendor-logout', {},
+        const response = await api.post('/auth/vendor/vendor-logout', {},
             {
                 withCredentials: true
             }
@@ -81,7 +82,7 @@ export const vendorLogout = createAsyncThunk('auth/vendor-logout',
 
 export const checkAuth = createAsyncThunk('auth/checkAuth',
     async()=>{
-        const response = await axios.get('http://localhost:3500/api/auth/user/checkAuth',
+        const response = await api.get('/auth/user/checkAuth',
             {
                 withCredentials : true,
                 headers : {
@@ -96,7 +97,7 @@ export const checkAuth = createAsyncThunk('auth/checkAuth',
 //Forgot password for user
 export const forgotPasswordUser = createAsyncThunk('auth/forgot-password-user',
     async ({email}) => {
-        const response = await axios.post('http://localhost:3500/api/auth/user/forgot-password',{email},
+        const response = await api.post('/auth/user/forgot-password',{email},
             {
                 withCredentials: true,
             }
@@ -108,7 +109,7 @@ export const forgotPasswordUser = createAsyncThunk('auth/forgot-password-user',
 
 export const resetPasswordUser = createAsyncThunk('auth/reset-password-user',
     async ({token,password}) => {
-        const response = await axios.post(`http://localhost:3500/api/auth/user/reset-password/${token}`,{password},
+        const response = await api.post(`/auth/user/reset-password/${token}`,{password},
             {
                 withCredentials: true,
             }
@@ -121,7 +122,7 @@ export const resetPasswordUser = createAsyncThunk('auth/reset-password-user',
 //Forgot Password for vendor
 export const forgotPasswordVendor = createAsyncThunk('auth/forgot-password-vendor',
     async ({email}) => {
-        const response = await axios.post('http://localhost:3500/api/auth/vendor/forgot-password',{email},
+        const response = await api.post('/auth/vendor/forgot-password',{email},
             {
                 withCredentials: true,
             }
@@ -133,7 +134,7 @@ export const forgotPasswordVendor = createAsyncThunk('auth/forgot-password-vendo
 
 export const resetPasswordVendor = createAsyncThunk('auth/reset-password-vendor',
     async ({token,password}) => {
-        const response = await axios.post(`http://localhost:3500/api/auth/vendor/reset-password/${token}`,{password},
+        const response = await api.post(`/auth/vendor/reset-password/${token}`,{password},
             {
                 withCredentials: true,
             }
